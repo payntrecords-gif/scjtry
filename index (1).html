@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <title>scj – Nové nebe nová země</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Oprava YouTube Error 153 -->
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+  :root {
+    --bg:          #FAFAF7;
+    --cream:       #F3EDE1;
+    --white:       #FFFFFF;
+    --text:        #1C1813;
+    --text-mid:    #3C3526;
+    --muted:       #7B7162;
+    --gold:        #B8903A;
+    --gold-dark:   #8C6D26;
+    --border:      #E5DDD0;
+    --border-light:#EDE8DE;
+    --font-serif:  "Playfair Display", Georgia, "Times New Roman", serif;
+    --font-sans:   "Inter", system-ui, -apple-system, sans-serif;
+    --max-w:       1200px;
+    --gutter:      2rem;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-sans);
+    color: var(--text);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.65;
+  }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; }
+
+  .container {
+    width: 100%;
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+
+  /* HEADER */
+  .site-header {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+  .logo-link {
+    display: flex; align-items: center; gap: .75rem;
+    text-decoration: none;
+  }
+  .logo-img { height: 22px; width: auto; }
+  .logo-sep { width: 1px; height: 18px; background: var(--border); }
+  .logo-sub {
+    font-size: .69rem; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--muted); font-weight: 500;
+  }
+  .main-nav { display: flex; align-items: center; gap: 2rem; }
+  .main-nav a {
+    text-decoration: none; font-size: .84rem; font-weight: 500;
+    letter-spacing: .04em; color: var(--muted); transition: color .18s;
+  }
+  .main-nav a:hover { color: var(--text); }
+  .nav-cta {
+    padding: .48rem 1.15rem; border: 1px solid var(--text);
+    border-radius: 999px; color: var(--text) !important;
+    font-size: .82rem !important; transition: background .18s, color .18s !important;
+  }
+  .nav-cta:hover { background: var(--text) !important; color: var(--bg) !important; }
+  .nav-toggle {
+    display: none; flex-direction: column; gap: 5px;
+    background: none; border: none; cursor: pointer; padding: .25rem; width: 32px;
+  }
+  .nav-toggle span {
+    display: block; width: 100%; height: 1.5px;
+    background: var(--text); border-radius: 999px;
+    transition: transform .2s, opacity .2s;
+  }
+  .nav-toggle.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2) { opacity: 0; }
+  .nav-toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  /* HERO */
+  .hero { padding: 5.5rem 0 4.5rem; border-bottom: 1px solid var(--border); }
+  .hero-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: end;
+  }
+  .eyebrow { display: flex; align-items: center; gap: .65rem; margin-bottom: 1.8rem; }
+  .eyebrow-line { display: block; width: 30px; height: 1px; background: var(--gold); flex-shrink: 0; }
+  .eyebrow-text { font-size: .69rem; letter-spacing: .24em; text-transform: uppercase; color: var(--gold); font-weight: 500; }
+  .hero-h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(2.8rem, 4.5vw, 4.2rem);
+    font-weight: 500; line-height: 1.1;
+    letter-spacing: -.025em; color: var(--text); margin: 0 0 1.5rem;
+  }
+  .hero-h1 em { font-style: italic; color: var(--gold-dark); }
+  .hero-desc { font-size: .97rem; color: var(--muted); max-width: 30rem; line-height: 1.75; margin: 0 0 2.2rem; }
+  .hero-actions { display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap; }
+  .btn-solid {
+    display: inline-flex; align-items: center; gap: .4rem;
+    background: var(--text); color: var(--bg);
+    font-family: var(--font-sans); font-size: .86rem; font-weight: 500;
+    letter-spacing: .05em; border: 1px solid var(--text); border-radius: 999px;
+    padding: .72rem 1.6rem; text-decoration: none;
+    transition: background .18s, border-color .18s;
+  }
+  .btn-solid:hover { background: var(--text-mid); border-color: var(--text-mid); }
+  .btn-text {
+    display: inline-flex; align-items: center; gap: .35rem;
+    color: var(--muted); font-size: .86rem; font-weight: 500;
+    text-decoration: none; border-bottom: 1px solid transparent;
+    padding-bottom: .1rem; transition: color .18s, border-color .18s;
+  }
+  .btn-text:hover { color: var(--text); border-color: var(--text); }
+  .arr { transition: transform .18s; display: inline-block; }
+  .btn-text:hover .arr, .btn-solid:hover .arr { transform: translateX(3px); }
+  .hero-media { display: flex; flex-direction: column; gap: .75rem; }
+  .hero-video {
+    border-radius: 4px; overflow: hidden;
+    background: var(--text); aspect-ratio: 16/9;
+    border: 1px solid var(--border);
+  }
+  .hero-video iframe { width: 100%; height: 100%; border: none; display: block; }
+  .hero-video-meta { display: flex; justify-content: space-between; align-items: baseline; }
+  .video-meta-title { font-size: .85rem; font-weight: 500; color: var(--text-mid); }
+  .video-meta-tag { font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+
+  /* CITÁT */
+  .quote-band { padding: 4.5rem 0; border-bottom: 1px solid var(--border); text-align: center; }
+  .quote-band blockquote { margin: 0; padding: 0; }
+  .quote-mark {
+    font-family: var(--font-serif); font-size: 5rem; line-height: .5;
+    color: var(--gold); display: block; margin-bottom: 1.4rem; user-select: none;
+  }
+  .quote-text {
+    font-family: var(--font-serif);
+    font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+    font-weight: 400; font-style: italic; line-height: 1.5;
+    color: var(--text-mid); max-width: 42rem; margin: 0 auto 1.2rem;
+  }
+  .quote-cite {
+    font-family: var(--font-sans); font-size: .72rem;
+    letter-spacing: .22em; text-transform: uppercase;
+    color: var(--gold); font-style: normal;
+  }
+
+  /* SECTION BASE */
+  .section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
+  .section-cream { background: var(--cream); }
+  .section-white { background: var(--white); }
+  .sec-label { display: flex; align-items: center; gap: .6rem; margin-bottom: 1rem; }
+  .sec-label-line { display: block; width: 24px; height: 1px; background: var(--gold); flex-shrink: 0; }
+  .sec-label-text { font-size: .68rem; letter-spacing: .24em; text-transform: uppercase; color: var(--gold); font-weight: 500; }
+  .sec-h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.7rem, 2.8vw, 2.4rem);
+    font-weight: 500; line-height: 1.2; letter-spacing: -.02em;
+    color: var(--text); margin: 0 0 .75rem;
+  }
+  .sec-lead { max-width: 34rem; color: var(--muted); font-size: .96rem; line-height: 1.75; margin: 0; }
+
+  /* O NÁS */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .about-body p { font-size: .96rem; color: var(--text-mid); line-height: 1.82; margin: 0 0 1.1rem; }
+  .about-body p:last-child { margin-bottom: 0; }
+  .inline-link {
+    color: var(--gold-dark); text-decoration: underline;
+    text-underline-offset: 3px; text-decoration-color: var(--gold); font-size: .9rem;
+  }
+  /* Foto v sekci O nás */
+  .about-photo {
+    border-radius: 4px; overflow: hidden;
+    border: 1px solid var(--border); aspect-ratio: 4/3;
+    background: var(--cream); margin-bottom: 1.5rem;
+  }
+  .about-photo img { width: 100%; height: 100%; object-fit: cover; }
+  /* Pilíře */
+  .pillars { list-style: none; margin: 0; padding: 0; }
+  .pillar { display: flex; gap: 1.1rem; align-items: flex-start; padding: 1.25rem 0; border-bottom: 1px solid var(--border-light); }
+  .pillar:first-child { border-top: 1px solid var(--border-light); }
+  .pillar-num { font-family: var(--font-serif); font-size: .95rem; color: var(--gold); min-width: 1.6rem; padding-top: .12rem; flex-shrink: 0; }
+  .pillar-body h4 { font-family: var(--font-sans); font-size: .88rem; font-weight: 600; letter-spacing: .03em; color: var(--text); margin: 0 0 .28rem; }
+  .pillar-body p { font-size: .86rem; color: var(--muted); margin: 0; line-height: 1.65; }
+
+  /* MISSION BAND */
+  .mission-band { padding: 5.5rem 0; text-align: center; border-bottom: 1px solid var(--border); background: var(--cream); }
+  .mission-band .sec-label { justify-content: center; }
+  .mission-h {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 500; font-style: italic; line-height: 1.25;
+    color: var(--text); max-width: 38rem; margin: 1rem auto 1.5rem;
+  }
+  .mission-sub { max-width: 30rem; margin: 0 auto 2.5rem; font-size: .96rem; color: var(--muted); line-height: 1.78; }
+
+  /* VIDEA */
+  .media-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-top: 3rem; }
+  .video-item { display: flex; flex-direction: column; gap: .75rem; }
+  .video-wrap {
+    border-radius: 4px; overflow: hidden;
+    background: #111; aspect-ratio: 16/9; border: 1px solid var(--border);
+  }
+  .video-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
+  .v-tag { font-size: .68rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); font-weight: 500; display: block; margin-bottom: .3rem; }
+  .v-title { font-family: var(--font-serif); font-size: 1.05rem; font-weight: 500; color: var(--text); margin: 0 0 .3rem; }
+  .v-desc { font-size: .87rem; color: var(--muted); margin: 0; line-height: 1.62; }
+  .v-link {
+    display: inline-flex; align-items: center; gap: .35rem;
+    color: var(--gold-dark); font-size: .86rem; font-weight: 500;
+    text-decoration: none; border-bottom: 1px solid var(--gold);
+    padding-bottom: .1rem; transition: color .18s, border-color .18s;
+  }
+  .v-link:hover { color: var(--text); border-color: var(--text); }
+  .v-link:hover .arr { transform: translateX(3px); }
+
+  /* VIDEO s thumbnail overlay */
+  .video-thumb-wrap { position: relative; cursor: pointer; border-radius: 4px; overflow: hidden; aspect-ratio: 16/9; border: 1px solid var(--border); }
+  .video-thumb-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .3s; }
+  .video-thumb-wrap:hover img { transform: scale(1.02); }
+  .play-btn {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    background: rgba(28, 24, 19, .35);
+  }
+  .play-btn svg { width: 56px; height: 56px; filter: drop-shadow(0 2px 8px rgba(0,0,0,.5)); }
+
+  /* AKTUALITY */
+  .news-grid { display: grid; grid-template-columns: 1.45fr 1fr; gap: 5rem; margin-top: 3rem; }
+  .news-featured { display: flex; flex-direction: column; gap: 0; }
+  .news-featured-item { padding: 1.8rem 0; border-bottom: 1px solid var(--border); }
+  .news-featured-item:first-child { border-top: 1px solid var(--border); }
+  .news-featured-item .n-img {
+    border-radius: 4px; overflow: hidden;
+    aspect-ratio: 16/7; background: var(--cream);
+    border: 1px solid var(--border-light); margin-bottom: 1.2rem;
+  }
+  .news-featured-item .n-img img { width: 100%; height: 100%; object-fit: cover; }
+  .n-tag { font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); font-weight: 500; display: block; margin-bottom: .6rem; }
+  .n-title-lg { font-family: var(--font-serif); font-size: clamp(1.25rem, 2vw, 1.65rem); font-weight: 500; line-height: 1.3; color: var(--text); margin: 0 0 .7rem; }
+  .n-excerpt { font-size: .93rem; color: var(--muted); line-height: 1.72; margin: 0 0 1rem; }
+  .n-link {
+    display: inline-flex; align-items: center; gap: .35rem;
+    color: var(--gold-dark); font-size: .85rem; font-weight: 500;
+    text-decoration: none; border-bottom: 1px solid var(--gold);
+    padding-bottom: .1rem; transition: color .18s, border-color .18s;
+  }
+  .n-link:hover { color: var(--text); border-color: var(--text); }
+  .n-link:hover .arr { transform: translateX(3px); }
+  .news-list { list-style: none; margin: 0; padding: 0; }
+  .news-list-item { padding: 1.15rem 0; border-bottom: 1px solid var(--border-light); }
+  .news-list-item:first-child { border-top: 1px solid var(--border-light); }
+  .nl-tag { font-size: .66rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: .3rem; }
+  .nl-title { font-family: var(--font-serif); font-size: .97rem; font-weight: 500; line-height: 1.4; color: var(--text); margin: 0; }
+  .nl-title a { text-decoration: none; }
+  .nl-title a:hover { color: var(--gold-dark); }
+  .news-more { margin-top: 1.8rem; }
+
+  /* KONTAKT */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; margin-top: 3rem; }
+  .contact-intro p { font-size: .95rem; color: var(--muted); line-height: 1.78; margin: 0 0 2rem; }
+  .contact-links { list-style: none; margin: 0; padding: 0; }
+  .c-link-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 0; border-bottom: 1px solid var(--border-light);
+    text-decoration: none; transition: color .18s;
+  }
+  .c-link-item:first-child { border-top: 1px solid var(--border-light); }
+  .c-link-item:hover .c-link-label { color: var(--gold-dark); }
+  .c-link-label { font-size: .88rem; font-weight: 500; color: var(--text); }
+  .c-link-url { font-size: .8rem; color: var(--muted); }
+  .form-row { margin-bottom: 1.15rem; }
+  .form-row label { display: block; font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); font-weight: 500; margin-bottom: .45rem; }
+  .form-row input, .form-row textarea {
+    display: block; width: 100%; padding: .72rem 0;
+    border: none; border-bottom: 1px solid var(--border);
+    background: transparent; font-family: var(--font-sans); font-size: .95rem;
+    color: var(--text); outline: none; transition: border-color .2s; border-radius: 0;
+  }
+  .form-row input::placeholder, .form-row textarea::placeholder { color: var(--border-light); }
+  .form-row input:focus, .form-row textarea:focus { border-bottom-color: var(--gold); }
+  .form-row textarea { resize: vertical; min-height: 96px; }
+  .form-submit {
+    margin-top: 2rem; width: 100%; padding: .9rem;
+    background: var(--text); color: var(--bg);
+    font-family: var(--font-sans); font-size: .82rem; font-weight: 500;
+    letter-spacing: .1em; text-transform: uppercase;
+    border: 1px solid var(--text); border-radius: 0; cursor: pointer; transition: background .18s;
+  }
+  .form-submit:hover { background: var(--text-mid); border-color: var(--text-mid); }
+
+  /* FOOTER */
+  .site-footer { padding: 1.8rem 0; border-top: 1px solid var(--border); background: var(--bg); }
+  .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .footer-brand { display: flex; align-items: center; gap: .7rem; }
+  .footer-brand img { height: 18px; opacity: .45; }
+  .footer-copy { font-size: .78rem; color: var(--muted); }
+  .footer-nav { display: flex; gap: 1.5rem; }
+  .footer-nav a { font-size: .78rem; color: var(--muted); text-decoration: none; }
+  .footer-nav a:hover { color: var(--text); }
+
+  /* RESPONSIVE */
+  @media (max-width: 980px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 2.8rem; }
+    .hero-media { order: -1; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .media-grid { grid-template-columns: 1fr; }
+    .news-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+  }
+  @media (max-width: 720px) {
+    :root { --gutter: 1.25rem; }
+    .main-nav { display: none; }
+    .main-nav.open {
+      display: flex; position: fixed; inset: 64px 0 auto 0;
+      flex-direction: column; align-items: flex-start; gap: 0;
+      background: var(--bg); border-bottom: 1px solid var(--border);
+      padding: .5rem 0 1rem; z-index: 99;
+    }
+    .main-nav.open a { padding: .75rem var(--gutter); width: 100%; }
+    .nav-toggle { display: flex; }
+    .hero { padding: 3.5rem 0 3rem; }
+    .section { padding: 3.5rem 0; }
+    .mission-band { padding: 3.5rem 0; }
+  }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="https://www.shincheonji.cz" class="logo-link">
+      <!-- Logo soubor: logo-scj.png -->
+      <img src="logo-scj.png" alt="scj" class="logo-img"
+           onerror="this.style.display='none';this.nextSibling.style.display='inline'">
+      <span style="display:none;font-weight:700;font-size:1rem;letter-spacing:.06em;">scj</span>
+      <span class="logo-sep"></span>
+      <span class="logo-sub">Nové nebe nová země</span>
+    </a>
+    <nav class="main-nav" id="main-nav">
+      <a href="#about">O nás</a>
+      <a href="#studium">Studium Bible</a>
+      <a href="#media">Videa</a>
+      <a href="#news">Aktuality</a>
+      <a href="#contact" class="nav-cta">Kontakt</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-text">Shincheonji · Česká republika</span>
+        </div>
+        <h1 class="hero-h1">
+          Církev, která<br>
+          hledá <em>pravdu</em><br>
+          v Božím slově
+        </h1>
+        <p class="hero-desc">
+          Věříme, že Bůh zaslíbil nové nebe a novou zemi. Studujeme Bibli
+          společně, do hloubky a s upřímností – protože víra má být živá,
+          ne jen zděděná.
+        </p>
+        <div class="hero-actions">
+          <a href="https://online.shincheonji.cz/" class="btn-solid">
+            Začít studovat Bibli <span class="arr">→</span>
+          </a>
+          <a href="#media" class="btn-text">
+            Podívat se na seminář <span class="arr">→</span>
+          </a>
+        </div>
+      </div>
+      <div class="hero-media">
+        <div class="hero-video">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/Htbx0MMSGoQ"
+            title="Shincheonji seminář – Boží příběh"
+            frameborder="0"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+        <div class="hero-video-meta">
+          <span class="video-meta-title">Seminář – Boží příběh</span>
+          <span class="video-meta-tag">Úvodní seminář</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CITÁT -->
+<section class="quote-band">
+  <div class="container">
+    <blockquote>
+      <span class="quote-mark">"</span>
+      <p class="quote-text">
+        Potom jsem uviděl nové nebe a novou zemi, protože první nebe a první
+        země pominuly.
+      </p>
+      <cite class="quote-cite">Zjevení 21 : 1</cite>
+    </blockquote>
+  </div>
+</section>
+
+<!-- O NÁS -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <div class="sec-label">
+          <span class="sec-label-line"></span>
+          <span class="sec-label-text">O církvi</span>
+        </div>
+        <h2 class="sec-h2">Kdo jsme a čemu věříme</h2>
+        <div class="about-body" style="margin-top:1.6rem;">
+          <p>
+            scj je zkratka pro Shincheonji – plný název církve zní
+            „Shincheonji, církev Ježíšova, chrám stánku svědectví". Jméno vychází
+            z biblického zaslíbení o novém Jeruzalému, kde Bůh přebývá se svým lidem
+            bez bolesti, slz a smrti.
+          </p>
+          <p>
+            Nevěříme, že víra má být věcí zvyku nebo rodové tradice. Věříme, že Bůh
+            chce, abychom ho poznali osobně – skrze Písmo, modlitbu a živé
+            společenství. Proto klademe velký důraz na studium Bible od Genesis
+            po Zjevení, s důrazem na proroctví a jejich naplnění.
+          </p>
+          <p>
+            Církev působí ve více než stu zemích světa a je uspořádána
+            do dvanácti kmenů, jejichž názvy vycházejí ze jmen Ježíšových učedníků.
+          </p>
+          <a href="https://www.shincheonji.cz" class="inline-link">Více na Shincheonji.cz →</a>
+        </div>
+      </div>
+      <div>
+        <div class="about-photo">
+          <img
+            src="https://i.ytimg.com/vi/Htbx0MMSGoQ/maxresdefault.jpg"
+            alt="Shincheonji seminář">
+        </div>
+        <ul class="pillars">
+          <li class="pillar">
+            <span class="pillar-num">01</span>
+            <div class="pillar-body">
+              <h4>Proroctví a naplnění</h4>
+              <p>Věříme, že Bůh zaslíbil věci dopředu a věrně je plní – v Ježíši, v historii i dnes.</p>
+            </div>
+          </li>
+          <li class="pillar">
+            <span class="pillar-num">02</span>
+            <div class="pillar-body">
+              <h4>Ježíš Kristus jako základ</h4>
+              <p>Ježíš je středem Božího plánu spásy. Bez něj není ani Starý ani Nový zákon celý.</p>
+            </div>
+          </li>
+          <li class="pillar">
+            <span class="pillar-num">03</span>
+            <div class="pillar-body">
+              <h4>Slovo nade vše</h4>
+              <p>Bible je Boží slovo – živé svědectví o Bohu a jeho záměru, ne jen sbírka moudrých rčení.</p>
+            </div>
+          </li>
+          <li class="pillar">
+            <span class="pillar-num">04</span>
+            <div class="pillar-body">
+              <h4>Víra, která se projeví</h4>
+              <p>Víra bez skutků je mrtvá. Sloužíme lidem kolem nás – v komunitě i v každodenním životě.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STUDIUM -->
+<section id="studium" class="mission-band">
+  <div class="container">
+    <div class="sec-label" style="justify-content:center;">
+      <span class="sec-label-line"></span>
+      <span class="sec-label-text">scj‑online · e‑learning</span>
+      <span class="sec-label-line"></span>
+    </div>
+    <h2 class="mission-h">
+      „Poznejte tajemství Bible nevídaným způsobem."
+    </h2>
+    <p class="mission-sub">
+      Bezplatný kurz studia Bible vedený lektory z církve Shincheonji.
+      Online, z pohodlí domova, v malých skupinách – krok za krokem
+      od základů až po knihu Zjevení.
+    </p>
+    <a href="https://online.shincheonji.cz/" class="btn-solid">
+      Přihlásit se na kurz <span class="arr">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- VIDEA -->
+<section id="media" class="section section-white">
+  <div class="container">
+    <div class="sec-label">
+      <span class="sec-label-line"></span>
+      <span class="sec-label-text">Videa & semináře</span>
+    </div>
+    <h2 class="sec-h2">Poslouchejte, ptejte se, hledejte</h2>
+    <p class="sec-lead">
+      Semináře, pořad Krok víry a série o Zjevení Janově na YouTube kanálu
+      „Nové nebe nová země, Shincheonji".
+    </p>
+    <div class="media-grid">
+      <div class="video-item">
+        <div class="video-wrap">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/Htbx0MMSGoQ"
+            title="Shincheonji seminář – Boží příběh"
+            frameborder="0"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+        <span class="v-tag">Seminář</span>
+        <p class="v-title">Boží příběh</p>
+        <p class="v-desc">Kde hledat Boží království? Seminář o tom, co Bůh plánuje a jak to Bible popisuje od začátku do konce.</p>
+      </div>
+      <div class="video-item">
+        <div class="video-wrap">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/UGk_c3Fh1zg"
+            title="Zjevení, které jsem viděl a slyšel"
+            frameborder="0"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+        <span class="v-tag">Zjevení Janovo</span>
+        <p class="v-title">Zjevení, které jsem viděl a slyšel</p>
+        <p class="v-desc">Seminář věnovaný celé knize Zjevení – co jednotlivé symboly znamenají a jak se naplňují.</p>
+      </div>
+      <div class="video-item">
+        <div class="video-wrap">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/UvwNVdETWDc"
+            title="Strom života a strom poznání"
+            frameborder="0"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+        <span class="v-tag">Seminář</span>
+        <p class="v-title">Strom života a strom poznání</p>
+        <p class="v-desc">Co tyto dva stromy v Bibli symbolizují a jaký mají vztah k Božímu plánu spásy pro člověka.</p>
+      </div>
+      <div class="video-item" style="justify-content:flex-start;padding:1.5rem 0 0;">
+        <span class="v-tag">YouTube kanál</span>
+        <p class="v-title" style="font-size:1.15rem;margin:.5rem 0 .7rem;">Celý archiv videí</p>
+        <p class="v-desc" style="margin-bottom:1.8rem;">
+          Chvály, svědectví, bohoslužby scjservice, pořad Krok víry
+          a hloubkové výklady Bible – vše v jednom místě.
+        </p>
+        <a href="https://www.youtube.com/c/shincheonjicz/playlists" class="v-link">
+          Otevřít YouTube kanál <span class="arr">→</span>
+        </a>
+        <div style="margin-top:2rem;border-top:1px solid var(--border-light);padding-top:1.5rem;">
+          <span class="v-tag">Instagram</span>
+          <p class="v-desc" style="margin:.4rem 0 1rem;">
+            Citáty, fotky ze života církve a krátká videa na Instagramu @scj.cz.
+          </p>
+          <a href="https://www.instagram.com/scj.cz/" class="v-link">
+            Sledovat @scj.cz <span class="arr">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AKTUALITY -->
+<section id="news" class="section section-cream">
+  <div class="container">
+    <div class="sec-label">
+      <span class="sec-label-line"></span>
+      <span class="sec-label-text">Aktuality</span>
+    </div>
+    <h2 class="sec-h2">Ze života církve</h2>
+    <div class="news-grid">
+      <div class="news-featured">
+        <div class="news-featured-item">
+          <div class="n-img">
+            <img src="https://i.ytimg.com/vi/UGk_c3Fh1zg/maxresdefault.jpg" alt="Zjevení seminář">
+          </div>
+          <span class="n-tag">Svědectví</span>
+          <h3 class="n-title-lg">
+            Jak Bůh proměnil můj život – osobní svědectví člena Shincheonji
+          </h3>
+          <p class="n-excerpt">
+            Lidé, kteří prošli studiem Bible v Shincheonji, mluví o změnách,
+            které zažili – v pohledu na svět, ve vztazích i ve víře samotné.
+            Jedno z takových svědectví vám přinášíme.
+          </p>
+          <a href="https://www.shincheonji.cz/svedectvi-clena-shincheonji-jak-buh-promenil-muj-zivot/" class="n-link">
+            Číst svědectví <span class="arr">→</span>
+          </a>
+        </div>
+        <div class="news-featured-item">
+          <div class="n-img">
+            <img src="https://i.ytimg.com/vi/Htbx0MMSGoQ/maxresdefault.jpg" alt="Promoce">
+          </div>
+          <span class="n-tag">Événement</span>
+          <h3 class="n-title-lg">
+            100 000 promoce se staly tradicí Křesťanského misijního centra Sión
+          </h3>
+          <p class="n-excerpt">
+            Promoce jsou výrazem radosti z toho, že tisíce lidí poznaly Boží plán
+            v Písmu a rozhodly se jít dál. Společná slavnost, která každý rok roste.
+          </p>
+          <a href="https://www.shincheonji.cz/100-000-promoce-se-staly-tradici/" class="n-link">
+            Číst článek <span class="arr">→</span>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-family:var(--font-serif);font-size:1rem;font-weight:500;color:var(--muted);margin:0 0 .5rem;letter-spacing:.04em;">Další zprávy</h3>
+        <ul class="news-list">
+          <li class="news-list-item">
+            <span class="nl-tag">Dobrovolnictví</span>
+            <p class="nl-title"><a href="https://www.shincheonji.cz/darovat-krev-ma-to-smysl/">Darovat krev? Má to smysl</a></p>
+          </li>
+          <li class="news-list-item">
+            <span class="nl-tag">Vánoce 2025</span>
+            <p class="nl-title"><a href="https://www.shincheonji.cz/kdyz-koledy-rozsviti-oci-dobrovolnici-prinesli-svetlo-do-domovu-senioru/">Když koledy rozsvítí oči</a></p>
+          </li>
+          <li class="news-list-item">
+            <span class="nl-tag">Tisková zpráva · 2026</span>
+            <p class="nl-title"><a href="https://www.shincheonji.cz/tiskova-zprava/">Obavy o náboženskou svobodu v Jižní Koreji</a></p>
+          </li>
+          <li class="news-list-item">
+            <span class="nl-tag">Prohlášení · 2026</span>
+            <p class="nl-title"><a href="https://www.shincheonji.cz/prohlaseni/">Vyjádření k označení církve za „společenskou škodu"</a></p>
+          </li>
+          <li class="news-list-item">
+            <span class="nl-tag">Kultura</span>
+            <p class="nl-title"><a href="https://www.shincheonji.cz/kultura-cirkve-shincheonji/">Kultura církve Shincheonji</a></p>
+          </li>
+        </ul>
+        <div class="news-more">
+          <a href="https://www.shincheonji.cz/zpravy-z-nnnz/" class="n-link">
+            Všechny aktuality <span class="arr">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section id="contact" class="section section-white">
+  <div class="container">
+    <div class="sec-label">
+      <span class="sec-label-line"></span>
+      <span class="sec-label-text">Kontakt</span>
+    </div>
+    <h2 class="sec-h2">Ozvěte se nám</h2>
+    <div class="contact-grid">
+      <div class="contact-intro">
+        <p>
+          Pokud vás Bible a víra zajímají do hloubky, můžete se přihlásit
+          na kurz, napsat nám nebo se podívat na naše sociální sítě.
+          Rádi odpovíme na každou upřímnou otázku.
+        </p>
+        <ul class="contact-links">
+          <li>
+            <a href="https://online.shincheonji.cz/" class="c-link-item">
+              <span class="c-link-label">scj‑online – přihláška na kurz</span>
+              <span class="c-link-url">online.shincheonji.cz</span>
+            </a>
+          </li>
+          <li>
+            <a href="mailto:czech@shincheonji.cz" class="c-link-item">
+              <span class="c-link-label">E‑mail</span>
+              <span class="c-link-url">czech@shincheonji.cz</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/scj.cz/" class="c-link-item">
+              <span class="c-link-label">Instagram</span>
+              <span class="c-link-url">@scj.cz</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.facebook.com/shincheonjicz/" class="c-link-item">
+              <span class="c-link-label">Facebook</span>
+              <span class="c-link-url">facebook.com/shincheonjicz</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/c/shincheonjicz" class="c-link-item">
+              <span class="c-link-label">YouTube</span>
+              <span class="c-link-url">Nové nebe nová země, Shincheonji</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <form onsubmit="return false;">
+        <div class="form-row">
+          <label for="name">Jméno</label>
+          <input type="text" id="name" name="name" placeholder="Vaše jméno">
+        </div>
+        <div class="form-row">
+          <label for="email">E‑mail</label>
+          <input type="email" id="email" name="email" placeholder="vase@adresa.cz">
+        </div>
+        <div class="form-row">
+          <label for="message">Zpráva</label>
+          <textarea id="message" name="message" rows="4" placeholder="Napište, co máte na srdci..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Odeslat zprávu</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img src="logo-scj.png" alt="scj"
+           onerror="this.style.display='none'">
+      <span class="footer-copy">© 2025 Shincheonji, církev Ježíšova · Česká republika</span>
+    </div>
+    <nav class="footer-nav">
+      <a href="https://www.shincheonji.cz">Shincheonji.cz</a>
+      <a href="https://www.shincheonji.cz/kontakt/">Kontakt</a>
+      <a href="https://online.shincheonji.cz/">scj‑online</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById("nav-toggle");
+  const nav = document.getElementById("main-nav");
+  toggle.addEventListener("click", () => {
+    toggle.classList.toggle("open");
+    nav.classList.toggle("open");
+  });
+</script>
+</body>
+</html>
