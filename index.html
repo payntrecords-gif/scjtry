@@ -119,6 +119,11 @@
     .info-card h3 { font-family: var(--font-serif); margin: 0 0 0.5rem; font-size: 1.2rem; }
     .info-card p { font-size: 0.85rem; color: var(--muted); margin: 0; }
 
+    .social-bar { display: flex; gap: 1rem; margin-top: 1.5rem; }
+    .social-icon { background: var(--white); border: 1px solid var(--border); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+    .social-icon:hover { border-color: var(--gold); transform: translateY(-2px); }
+    .social-icon img { width: 20px; height: 20px; }
+
     .quote { text-align: center; padding: 4rem 0; background: var(--cream); border-bottom: 1px solid var(--border); }
     .quote-text { font-family: var(--font-serif); font-size: 1.6rem; font-style: italic; max-width: 40rem; margin: 0 auto 1rem; }
     .quote-cite { font-size: 0.7rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.2em; }
@@ -176,14 +181,14 @@
         <div class="grid-2">
           <div class="text-block">
             <div class="img-wrap" style="aspect-ratio: 16/9;">
-              <img src="Graduation_Photo-2.jpg" alt="100 000 promoce">
+              <img src="Graduation_Photo.jpg" alt="100 000 promoce">
             </div>
             <p>Celý název církve zní „Shincheonji, církev Ježíšova, svatyně stánku svědectví“. Jméno Shincheonji pochází z čínštiny a znamená Nové nebe nová země.</p>
             <p>Založení Shincheonji, její struktura a organizace jsou čistě na základě Bible. Shincheonji navěky zachovává novou smlouvu, což je vůle Boha a Ježíše.</p>
           </div>
           <div class="text-block">
             <div class="img-wrap" style="aspect-ratio: 1/1; max-width: 300px; margin: 0 auto 1.5rem;">
-              <img src="predseda-3.jpg" alt="Předseda Man Hee Lee">
+              <img src="předseda.jpg" alt="Předseda Man Hee Lee">
             </div>
             <p>Na základě vůle Ježíše se Shincheonji zavazuje stát se vtělesněním lásky, která přichází jako světlo, déšť a vzduch.</p>
             <p>Mou upřímnou nadějí je, aby s vámi se všemi byla vždy bezpodmínečná láska Boží a Kristova.</p>
@@ -224,7 +229,7 @@
         <div class="grid-2">
           <div>
             <div class="img-wrap" style="aspect-ratio: 4/3;">
-              <img src="shincheonji-dobrovolnictvi-darovani-krve-1024x768-4.jpg" alt="Darování krve">
+              <img src="shincheonji-dobrovolnictvi-darovani-krve-1024x768.jpg" alt="Darování krve">
             </div>
             <div class="info-card">
               <h3>Dobrovolnictví</h3>
@@ -236,7 +241,7 @@
               <img src="shincheonji-dobrovolnictvi-2025-domov-senioru-1-1024x684.jpg" alt="Domov seniorů">
             </div>
             <div class="info-card">
-              <h3>Kultura</h3>Add photos to sections
+              <h3>Kultura</h3>
               <p>Pořádáme vánoční události, sportovní turnaje a divadelní představení, která přibližují radost z víry.</p>
             </div>
           </div>
@@ -251,8 +256,19 @@
         <div class="grid-2">
           <div class="text-block">
             <p>Email: <a href="mailto:czech@shincheonji.cz" style="color:var(--gold-dark)">czech@shincheonji.cz</a></p>
-            <p>Instagram: <a href="https://www.instagram.com/scj.cz/" style="color:var(--gold-dark)">@scj.cz</a></p>
-            <p>Web: <a href="https://www.shincheonji.cz" style="color:var(--gold-dark)">www.shincheonji.cz</a></p>
+            <p>Web: <a href="https://www.shincheonji.cz" target="_blank" style="color:var(--gold-dark)">www.shincheonji.cz</a></p>
+            
+            <div class="social-bar">
+              <a href="https://www.facebook.com/shincheonjicz/" target="_blank" class="social-icon" title="Facebook">
+                <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="FB">
+              </a>
+              <a href="https://www.instagram.com/scj.cz/" target="_blank" class="social-icon" title="Instagram">
+                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="IG">
+              </a>
+              <a href="https://www.youtube.com/c/shincheonjicz" target="_blank" class="social-icon" title="YouTube">
+                <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YT">
+              </a>
+            </div>
           </div>
           <div class="info-card" style="background: var(--cream); border: none;">
             <p style="font-style: italic; color: var(--text-mid);">"Poznejte tajemství Bible nevídaným způsobem."</p>
