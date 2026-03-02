@@ -51,10 +51,20 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 60px;
+      height: 65px;
     }
-    .logo {
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
       text-decoration: none;
+    }
+    .church-logo-sm {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+    }
+    .logo-text {
       font-size: 0.75rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
@@ -87,7 +97,7 @@
       color: var(--text);
     }
     .hero-p { color: var(--text-mid); font-size: 1.1rem; max-width: 34rem; margin-bottom: 2.5rem; opacity: 0.9; }
-    .hero-actions { display: flex; gap: 1rem; }
+    .hero-actions { display: flex; gap: 1rem; align-items: center; }
     .btn {
       padding: 0.8rem 2rem;
       border-radius: 99px;
@@ -101,7 +111,24 @@
     .btn-outline { border: 1px solid var(--gold); color: var(--gold-dark); }
     .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
     .btn-solid:hover { background: var(--gold-dark); border-color: var(--gold-dark); }
-    .hero-media { border-radius: 12px; overflow: hidden; aspect-ratio: 16/9; background: #000; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    
+    .hero-media-wrap { position: relative; }
+    .hero-logo-badge {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      width: 80px;
+      height: 80px;
+      background: var(--white);
+      padding: 10px;
+      border-radius: 50%;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      z-index: 10;
+      border: 1px solid var(--border-light);
+    }
+    .hero-logo-badge img { width: 100%; height: 100%; object-fit: contain; }
+
+    .hero-media { border-radius: 12px; overflow: hidden; aspect-ratio: 16/9; background: #000; box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 1px solid var(--border); }
     .hero-media iframe { width: 100%; height: 100%; border: none; }
 
     .section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
@@ -127,8 +154,17 @@
     .img-content h3 { font-family: var(--font-serif); margin: 0 0 0.5rem; font-size: 1.3rem; }
     .img-content p { font-size: 0.9rem; color: var(--muted); margin: 0; }
 
-    .promo-section { background: var(--text); color: var(--bg); padding: 6rem 0; text-align: center; }
-    .promo-stats { display: flex; justify-content: center; gap: 4rem; margin-top: 3rem; }
+    .promo-section { background: var(--text); color: var(--bg); padding: 6rem 0; text-align: center; position: relative; overflow: hidden; }
+    .promo-bg-logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      opacity: 0.03;
+      pointer-events: none;
+    }
+    .promo-stats { display: flex; justify-content: center; gap: 4rem; margin-top: 3rem; position: relative; z-index: 2; }
     .stat-item { flex: 1; max-width: 250px; }
     .stat-num { font-family: var(--font-serif); font-size: 3.5rem; color: var(--gold); line-height: 1; margin-bottom: 0.5rem; }
     .stat-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.2em; opacity: 0.8; }
@@ -144,12 +180,14 @@
     .quote-text { font-family: var(--font-serif); font-size: 1.8rem; font-style: italic; max-width: 44rem; margin: 0 auto 1.5rem; line-height: 1.4; color: var(--text); }
     .quote-cite { font-size: 0.75rem; color: var(--gold-dark); text-transform: uppercase; letter-spacing: 0.25em; font-weight: 600; }
 
-    footer { padding: 3rem 0; background: var(--bg); text-align: center; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--border); }
+    footer { padding: 4rem 0 3rem; background: var(--bg); text-align: center; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--border); }
+    .footer-logo { width: 50px; height: 50px; margin-bottom: 1.5rem; opacity: 0.8; }
     
     @media (max-width: 900px) {
       .hero-grid, .grid-2 { grid-template-columns: 1fr; gap: 3rem; }
       nav { display: none; }
       .promo-stats { flex-direction: column; align-items: center; gap: 3rem; }
+      .hero-logo-badge { width: 60px; height: 60px; bottom: -10px; right: -10px; }
     }
   </style>
 </head>
@@ -157,7 +195,10 @@
 
   <header>
     <div class="container header-inner">
-      <a href="#" class="logo">Shincheonji · ČR</a>
+      <a href="#" class="logo-wrap">
+        <img src="https://raw.githubusercontent.com/payntrecords-gif/scjtry/main/church_mark.jpg" alt="Logo" class="church-logo-sm">
+        <span class="logo-text">Shincheonji · ČR</span>
+      </a>
       <nav>
         <a href="#graduation">100 000 Promoce</a>
         <a href="#about">O nás</a>
@@ -172,15 +213,20 @@
       <div class="container hero-grid">
         <div>
           <span class="sec-label">Nové nebe nová země 2026</span>
-          <h1 class="hero-h1">Krásná Shincheonji, která zachovává novou smlouvu a šíří lásku k pravdě</h1>
+          <h1 class="hero-h1">Jediná pravá církev, kde všichni rozumí Zjevení</h1>
           <p class="hero-p">Shincheonji je církev, která věří v Ježíše a žije život víry podle jeho učení. V roce 2026 pokračujeme v šíření slova, které léčí národy a přináší naději světu.</p>
           <div class="hero-actions">
             <a href="https://online.shincheonji.cz/" class="btn btn-solid">Začít studovat</a>
             <a href="#graduation" class="btn btn-outline">Více o 100k promoci</a>
           </div>
         </div>
-        <div class="hero-media">
-          <iframe src="https://www.youtube.com/embed/7xr1dV5h2J8" allowfullscreen></iframe>
+        <div class="hero-media-wrap">
+          <div class="hero-media">
+            <iframe src="https://www.youtube.com/embed/7xr1dV5h2J8" allowfullscreen></iframe>
+          </div>
+          <div class="hero-logo-badge">
+            <img src="https://raw.githubusercontent.com/payntrecords-gif/scjtry/main/church_mark.jpg" alt="Church Mark">
+          </div>
         </div>
       </div>
     </section>
@@ -208,7 +254,7 @@
           </div>
           <div class="text-block" style="display: flex; flex-direction: column; justify-content: center;">
             <p>Promoce 100 000 absolventů v Shincheonji se staly celosvětovou tradicí. Je to bezprecedentní fenomén, který ukazuje na neutuchající hlad po pravdě a hlubokém porozumění Bibli.</p>
-            <p>V roce 2024 odpromovalo rekordních <strong>111 628 studentů</strong> za jediný rok, což potvrzuje výjimečnost našeho poznání.</p>
+            <p>V roce 2023 odpromovalo rekordních <strong>108 084 studentů</strong> za jediný rok, což potvrzuje výjimečnost našeho vzdělávacího systému.</p>
             <div style="margin-top: 1rem; padding: 1.5rem; background: var(--cream); border-radius: 8px;">
               <span style="display: block; font-family: var(--font-serif); font-size: 1.2rem; color: var(--gold-dark); margin-bottom: 0.5rem;">„Učení, které mění životy“</span>
               <p style="font-size: 0.9rem; margin: 0; font-style: italic;">Studenti si cení především jasného výkladu proroctví a jejich naplnění v dnešní době.</p>
@@ -243,6 +289,7 @@
     </section>
 
     <section class="promo-section">
+      <img src="https://raw.githubusercontent.com/payntrecords-gif/scjtry/main/church_mark.jpg" alt="BG Logo" class="promo-bg-logo">
       <div class="container">
         <span class="sec-label" style="color: var(--gold);">Globální dopad</span>
         <h2 class="sec-h2" style="color: var(--white); margin-bottom: 1rem;">Rosteme společně v pravdě</h2>
@@ -258,7 +305,7 @@
           </div>
           <div class="stat-item">
             <div class="stat-num">100%</div>
-            <div class="stat-label">Zdarma</div>
+            <div class="stat-label">Bezplatné studium</div>
           </div>
         </div>
       </div>
@@ -348,6 +395,7 @@
 
   <footer>
     <div class="container">
+      <img src="https://raw.githubusercontent.com/payntrecords-gif/scjtry/main/church_mark.jpg" alt="Church Logo" class="footer-logo">
       <p>© 2026 Shincheonji, církev Ježíšova · Česká republika</p>
       <p style="font-size: 0.7rem; margin-top: 0.5rem; opacity: 0.6;">Všechna práva vyhrazena.</p>
     </div>
