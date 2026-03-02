@@ -112,11 +112,14 @@
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
     .text-block p { color: var(--text-mid); margin-bottom: 1rem; font-size: 0.95rem; }
 
-    .info-card { background: var(--white); padding: 1.5rem; border: 1px solid var(--border-light); border-radius: 6px; }
+    .img-wrap { border-radius: 8px; overflow: hidden; border: 1px solid var(--border); background: var(--cream); margin-bottom: 1rem; }
+    .img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .info-card { background: var(--white); padding: 1.5rem; border: 1px solid var(--border-light); border-radius: 6px; height: 100%; }
     .info-card h3 { font-family: var(--font-serif); margin: 0 0 0.5rem; font-size: 1.2rem; }
     .info-card p { font-size: 0.85rem; color: var(--muted); margin: 0; }
 
-    .quote { text-align: center; padding: 3rem 0; background: var(--cream); border-bottom: 1px solid var(--border); }
+    .quote { text-align: center; padding: 4rem 0; background: var(--cream); border-bottom: 1px solid var(--border); }
     .quote-text { font-family: var(--font-serif); font-size: 1.6rem; font-style: italic; max-width: 40rem; margin: 0 auto 1rem; }
     .quote-cite { font-size: 0.7rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.2em; }
 
@@ -172,12 +175,18 @@
         <h2 class="sec-h2">Název a podstata církve</h2>
         <div class="grid-2">
           <div class="text-block">
+            <div class="img-wrap" style="aspect-ratio: 16/9;">
+              <img src="Graduation_Photo-2.jpg" alt="100 000 promoce">
+            </div>
             <p>Celý název církve zní „Shincheonji, církev Ježíšova, svatyně stánku svědectví“. Jméno Shincheonji pochází z čínštiny a znamená Nové nebe nová země.</p>
-            <p>Založení Shincheonji, její struktura a organizace jsou čistě na základě Bible. Shincheonji navěky zachovává novou smlouvu, což je vůle Boha a Ježíše, a zavazuje se vytvořit z tohoto světa nebe, ve kterém bude přebývat Bůh.</p>
+            <p>Založení Shincheonji, její struktura a organizace jsou čistě na základě Bible. Shincheonji navěky zachovává novou smlouvu, což je vůle Boha a Ježíše.</p>
           </div>
           <div class="text-block">
-            <p>Na základě vůle Ježíše, který nám projevil svou lásku na kříži, se Shincheonji zavazuje stát se vtělesněním lásky, která přichází jako světlo, déšť a vzduch. To je srdce, které sdílejí všichni členové Shincheonji.</p>
-            <p>Mou upřímnou nadějí je, aby s vámi se všemi byla vždy bezpodmínečná láska Boží a Kristova. Mějme společně účast na nebeské hostině záchrany.</p>
+            <div class="img-wrap" style="aspect-ratio: 1/1; max-width: 300px; margin: 0 auto 1.5rem;">
+              <img src="predseda-3.jpg" alt="Předseda Man Hee Lee">
+            </div>
+            <p>Na základě vůle Ježíše se Shincheonji zavazuje stát se vtělesněním lásky, která přichází jako světlo, déšť a vzduch.</p>
+            <p>Mou upřímnou nadějí je, aby s vámi se všemi byla vždy bezpodmínečná láska Boží a Kristova.</p>
             <p><em>— Předseda Man Hee Lee</em></p>
           </div>
         </div>
@@ -191,16 +200,18 @@
         <div class="grid-2">
           <div class="text-block">
             <p>V Křesťanském misijním centru Sión je vyučováno o fyzickém naplnění knihy Zjevení, které se týká dnešního času. Kurz je rozdělen do čtyř částí:</p>
-            <ul style="color: var(--text-mid); font-size: 0.95rem; padding-left: 1.2rem;">
+            <ul style="color: var(--text-mid); font-size: 0.95rem; padding-left: 1.2rem; margin-bottom: 2rem;">
               <li><strong>Základy víry:</strong> Seznámení se základy víry.</li>
-              <li><strong>Tajemství království nebeského:</strong> Význam podobenství napříč Biblí.</li>
-              <li><strong>Celá Bible:</strong> Boží příběh od Genesis až po Zjevení.</li>
-              <li><strong>Zjevení:</strong> Porozumění proroctví a naplnění knihy Zjevení.</li>
+              <li><strong>Tajemství království nebeského:</strong> Význam podobenství.</li>
+              <li><strong>Celá Bible:</strong> Od Genesis až po Zjevení.</li>
+              <li><strong>Zjevení:</strong> Proroctví a naplnění.</li>
             </ul>
+            <a href="https://online.shincheonji.cz/" class="btn btn-solid">Zápis do kurzu</a>
           </div>
           <div class="info-card" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
-            <p style="font-weight: 600; color: var(--text); margin-bottom: 1rem;">Studovalo celosvětově přes 106 186 absolventů včetně 522 pastorů.</p>
-            <a href="https://online.shincheonji.cz/" class="btn btn-solid">Zápis do kurzu</a>
+            <div style="font-size: 2.5rem; font-family: var(--font-serif); color: var(--gold); margin-bottom: 0.5rem;">106 186+</div>
+            <p style="font-weight: 600; color: var(--text);">absolventů za jediný rok</p>
+            <p style="font-size: 0.8rem; margin-top: 1rem;">včetně stovek pastorů z celého světa, kteří s námi uzavřeli MOU o spolupráci.</p>
           </div>
         </div>
       </div>
@@ -211,13 +222,23 @@
         <span class="sec-label">Kultura a dobrovolnictví</span>
         <h2 class="sec-h2">Život víry v praxi</h2>
         <div class="grid-2">
-          <div class="info-card">
-            <h3>Dobrovolnictví</h3>
-            <p>Bible považuje lásku za to nejcennější. Dobrovolníci ze Shincheonji pořádají řadu aktivit: návštěvy domovů seniorů, doučování studentů, sbírání odpadků nebo pravidelné darování krve (kampaň LIFE ON).</p>
+          <div>
+            <div class="img-wrap" style="aspect-ratio: 4/3;">
+              <img src="shincheonji-dobrovolnictvi-darovani-krve-1024x768-4.jpg" alt="Darování krve">
+            </div>
+            <div class="info-card">
+              <h3>Dobrovolnictví</h3>
+              <p>Bible považuje lásku za to nejcennější. Pořádáme návštěvy domovů seniorů, doučování studentů nebo pravidelné darování krve (LIFE ON).</p>
+            </div>
           </div>
-          <div class="info-card">
-            <h3>Kultura</h3>
-            <p>Pořádáme vánoční události, sportovní turnaje, výstavy a divadelní představení. Skrze kulturu chceme přinášet radost a úsměv na tváře lidí kolem nás.</p>
+          <div>
+            <div class="img-wrap" style="aspect-ratio: 4/3;">
+              <img src="shincheonji-dobrovolnictvi-2025-domov-senioru-1-1024x684.jpg" alt="Domov seniorů">
+            </div>
+            <div class="info-card">
+              <h3>Kultura</h3>Add photos to sections
+              <p>Pořádáme vánoční události, sportovní turnaje a divadelní představení, která přibližují radost z víry.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -233,7 +254,7 @@
             <p>Instagram: <a href="https://www.instagram.com/scj.cz/" style="color:var(--gold-dark)">@scj.cz</a></p>
             <p>Web: <a href="https://www.shincheonji.cz" style="color:var(--gold-dark)">www.shincheonji.cz</a></p>
           </div>
-          <div class="info-card">
+          <div class="info-card" style="background: var(--cream); border: none;">
             <p style="font-style: italic; color: var(--text-mid);">"Poznejte tajemství Bible nevídaným způsobem."</p>
           </div>
         </div>
@@ -243,7 +264,7 @@
 
   <footer>
     <div class="container">
-      <p>&copy; 2026 Shincheonji, církev Ježíšova, svatyně stánku svědectví · Česká republika</p>
+      <p>&copy; 2026 Shincheonji, církev Ježíšova · Česká republika</p>
     </div>
   </footer>
 </body>
