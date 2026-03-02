@@ -1,4 +1,7 @@
-<!DOCTYPE html><html lang="cs"><head> <meta charset="UTF-8">
+<!DOCTYPE<!DOCTYPE html>
+<html lang="cs">
+<head>
+ <meta charset="UTF-8">
  <title>Shincheonji – Nové nebe nová země 2026</title>
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,6 +34,444 @@
  -webkit-font-smoothing: antialiased;
  }
  .container {
+ width: 100%;
+ max-width: var(--max-w);
+ margin: 0 auto;
+ padding: 0 var(--gutter);
+ }
+ header {
+ position: sticky;
+ top: 0;
+ z-index: 100;
+ background: rgba(250, 250, 247, 0.95);
+ backdrop-filter: blur(8px);
+ border-bottom: 1px solid var(--border);
+ }
+ .header-inner {
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ height: 65px;
+ }
+ .logo-wrap {
+ display: flex;
+ align-items: center;
+ gap: 0.8rem;
+ text-decoration: none;
+ }
+ .church-logo-sm {
+ width: 32px;
+ height: 32px;
+ object-fit: contain;
+ }
+ .logo-text {
+ font-size: 0.75rem;
+ letter-spacing: 0.15em;
+ text-transform: uppercase;
+ color: var(--text-mid);
+ font-weight: 600;
+ }
+ nav { display: flex; gap: 1.5rem; align-items: center; }
+ nav a {
+ text-decoration: none;
+ font-size: 0.85rem;
+ font-weight: 500;
+ color: var(--muted);
+ transition: color 0.2s;
+ }
+ nav a:hover { color: var(--gold); }
+ .nav-cta {
+ padding: 0.5rem 1.2rem;
+ background: var(--text);
+ border-radius: 99px;
+ color: var(--bg) !important;
+ }
+ .hero { padding: 5rem 0 4rem; border-bottom: 1px solid var(--border); background: radial-gradient(circle at top right, #fdfcf8, var(--bg)); }
+ .hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; }
+ .hero-h1 {
+ font-family: var(--font-serif);
+ font-size: clamp(2.4rem, 5vw, 3.6rem);
+ line-height: 1.1;
+ margin: 0 0 1.5rem;
+ font-weight: 500;
+ color: var(--text);
+ }
+ .hero-p { color: var(--text-mid); font-size: 1.1rem; max-width: 34rem; margin-bottom: 2.5rem; opacity: 0.9; }
+ .hero-actions { display: flex; gap: 1rem; align-items: center; }
+ .btn {
+ padding: 0.8rem 2rem;
+ border-radius: 99px;
+ text-decoration: none;
+ font-weight: 600;
+ font-size: 0.9rem;
+ transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+ display: inline-block;
+ text-align: center;
+ }
+ .btn-solid { background: var(--text); color: var(--bg); border: 1px solid var(--text); }
+ .btn-outline { border: 1px solid var(--gold); color: var(--gold-dark); }
+ .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+ .btn-solid:hover { background: var(--gold-dark); border-color: var(--gold-dark); }
+ 
+ .hero-media-wrap { position: relative; }
+ .hero-logo-badge {
+ position: absolute;
+ bottom: -20px;
+ right: -20px;
+ width: 80px;
+ height: 80px;
+ background: var(--white);
+ padding: 10px;
+ border-radius: 50%;
+ box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+ z-index: 10;
+ border: 1px solid var(--border-light);
+ }
+ .hero-logo-badge img { width: 100%; height: 100%; object-fit: contain; }
+ .hero-media { border-radius: 12px; overflow: hidden; aspect-ratio: 16/9; background: #000; box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 1px solid var(--border); }
+ .hero-media iframe { width: 100%; height: 100%; border: none; }
+ .section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
+ .sec-label { color: var(--gold); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.25em; font-weight: 700; margin-bottom: 1rem; display: block; }
+ .sec-h2 { font-family: var(--font-serif); font-size: 2.6rem; margin: 0 0 2rem; font-weight: 500; line-height: 1.2; }
+ 
+ .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+ .text-block p { color: var(--text-mid); margin-bottom: 1.2rem; font-size: 1rem; }
+ 
+ .img-card {
+ background: var(--white);
+ border-radius: 12px;
+ overflow: hidden;
+ box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+ border: 1px solid var(--border-light);
+ transition: transform 0.3s;
+ }
+ .img-card:hover { transform: translateY(-5px); }
+ .img-wrap { width: 100%; overflow: hidden; background: var(--cream); }
+ .img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
+ .img-card:hover img { transform: scale(1.03); }
+ .img-content { padding: 1.5rem; }
+ .img-content h3 { font-family: var(--font-serif); margin: 0 0 0.5rem; font-size: 1.3rem; }
+ .img-content p { font-size: 0.9rem; color: var(--muted); margin: 0; }
+ .promo-section { background: var(--text); color: var(--bg); padding: 6rem 0; text-align: center; position: relative; overflow: hidden; }
+ .promo-bg-logo {
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ width: 600px;
+ opacity: 0.03;
+ pointer-events: none;
+ }
+ .promo-stats { display: flex; justify-content: center; gap: 4rem; margin-top: 3rem; position: relative; z-index: 2; }
+ .stat-item { flex: 1; max-width: 250px; }
+ .stat-num { font-family: var(--font-serif); font-size: 3.5rem; color: var(--gold); line-height: 1; margin-bottom: 0.5rem; }
+ .stat-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.2em; opacity: 0.8; }
+ .info-card { background: var(--white); padding: 2.5rem; border: 1px solid var(--border-light); border-radius: 12px; height: 100%; }
+ 
+ .social-bar { display: flex; gap: 1.2rem; margin-top: 2rem; }
+ .social-icon { background: var(--white); border: 1px solid var(--border); border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+ .social-icon:hover { border-color: var(--gold); transform: translateY(-3px); background: var(--cream); }
+ .social-icon img { width: 22px; height: 22px; }
+ .quote { text-align: center; padding: 5rem 0; background: var(--cream); border-bottom: 1px solid var(--border); }
+ .quote-text { font-family: var(--font-serif); font-size: 1.8rem; font-style: italic; max-width: 44rem; margin: 0 auto 1.5rem; line-height: 1.4; color: var(--text); }
+ .quote-cite { font-size: 0.75rem; color: var(--gold-dark); text-transform: uppercase; letter-spacing: 0.25em; font-weight: 600; }
+
+ /* New Sections Styles */
+ .platforms-sec { padding: 3rem 0; background: var(--white); border-bottom: 1px solid var(--border); }
+ .platforms-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+ .p-card { 
+    background: var(--cream); 
+    padding: 2.5rem; 
+    border-radius: 12px; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    text-align: center;
+    transition: transform 0.3s;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid var(--border-light);
+ }
+ .p-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+ .p-icon { font-size: 2.5rem; margin-bottom: 1rem; color: var(--gold); }
+ .p-card h3 { font-family: var(--font-serif); font-size: 1.8rem; margin: 0 0 1rem; }
+ .p-card p { font-size: 0.95rem; color: var(--text-mid); margin-bottom: 1.5rem; max-width: 20rem; }
+ 
+ .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2.5rem; }
+ .news-card { background: var(--white); border: 1px solid var(--border-light); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
+ .news-img { aspect-ratio: 16/9; overflow: hidden; }
+ .news-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
+ .news-card:hover .news-img img { transform: scale(1.05); }
+ .news-body { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
+ .news-body h4 { font-family: var(--font-serif); font-size: 1.25rem; margin: 0 0 0.75rem; color: var(--text); }
+ .news-body p { font-size: 0.9rem; color: var(--muted); margin-bottom: 1.5rem; flex-grow: 1; }
+ .news-link { font-weight: 600; font-size: 0.85rem; color: var(--gold-dark); text-decoration: none; text-transform: uppercase; letter-spacing: 0.1em; }
+
+ footer { padding: 4rem 0 3rem; background: var(--bg); text-align: center; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--border); }
+ .footer-logo { width: 50px; height: 50px; margin-bottom: 1.5rem; opacity: 0.8; }
+ 
+ @media (max-width: 900px) {
+ .hero-grid, .grid-2, .platforms-grid { grid-template-columns: 1fr; gap: 3rem; }
+ nav { display: none; }
+ .promo-stats { flex-direction: column; align-items: center; gap: 3rem; }
+ .hero-logo-badge { width: 60px; height: 60px; bottom: -10px; right: -10px; }
+ }
+ </style>
+</head>
+<body>
+ <header>
+ <div class="container header-inner">
+ <a href="#" class="logo-wrap">
+ <img src="https://avatars.githubusercontent.com/u/259369535?v=4" alt="Logo" class="church-logo-sm">
+ <span class="logo-text">Shincheonji · ČR</span>
+ </a>
+ <nav>
+ <a href="#graduation">100 000 Promoce</a>
+ <a href="#aktuality">Zprávy</a>
+ <a href="#about">O nás</a>
+ <a href="#studium">Studium Bible</a>
+ <a href="#contact" class="nav-cta">Kontakt</a>
+ </nav>
+ </div>
+ </header>
+ <main>
+ <section class="hero">
+ <div class="container hero-grid">
+ <div>
+ <span class="sec-label">Nové nebe nová země 2026</span>
+ <h1 class="hero-h1">Jediná pravá církev, kde všichni rozumí Zjevení</h1>
+ <p class="hero-p">Shincheonji je církev, která věří v Ježíše a žije život víry podle jeho učení. V roce 2026 pokračujeme v šíření slova, které léčí národy a přináší naději světu.</p>
+ <div class="hero-actions">
+ <a href="https://online.shincheonji.cz/" class="btn btn-solid">Začít studovat</a>
+ <a href="#graduation" class="btn btn-outline">Více o 100k promoci</a>
+ </div>
+ </div>
+ <div class="hero-media-wrap">
+ <div class="hero-media">
+ <iframe src="https://www.youtube.com/embed/7xr1dV5h2J8" allowfullscreen></iframe>
+ </div>
+ <div class="hero-logo-badge">
+ <img src="https://avatars.githubusercontent.com/u/259369535?v=4" alt="Church Mark">
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <section class="platforms-sec">
+    <div class="container platforms-grid">
+        <a href="https://online.shincheonji.cz/" target="_blank" class="p-card">
+            <div class="p-icon">📖</div>
+            <h3>scj-online</h3>
+            <p>Biblický e-learning. Poznejte tajemství Bible nevídaným způsobem. Zdarma. Z pohodlí domova.</p>
+            <span class="btn btn-outline">Otevřít</span>
+        </a>
+        <a href="https://www.youtube.com/c/shincheonjicz" target="_blank" class="p-card">
+            <div class="p-icon">🎥</div>
+            <h3>Krok víry</h3>
+            <p>Křesťanský pořad o víře a životě. Nové díly jsou pravidelně dostupné na YouTube.</p>
+            <span class="btn btn-outline">Podívat se</span>
+        </a>
+    </div>
+ </section>
+
+ <div class="quote">
+ <div class="container">
+ <p class="quote-text">„Potom jsem uviděl nové nebe a novou zemi, protože první nebe a první země pominuly.“</p>
+ <span class="quote-cite">Zjevení 21 : 1</span>
+ </div>
+ </div>
+
+ <section class="section" id="aktuality">
+    <div class="container">
+        <span class="sec-label">Novinky</span>
+        <h2 class="sec-h2">Aktuality</h2>
+        <div class="news-grid">
+            <div class="news-card">
+                <div class="news-img"><img src="https://raw.githubusercontent.com/payntrecords-gif/scjtry/main/shincheonji-dobrovolnictvi-darovani-krve-1024x768.jpg" alt="Dárce krve"></div>
+                <div class="news-body">
+                    <h4>Hrdý dárce krve</h4>
+                    <p>Zapojte se do naší pravidelné iniciativy darování krve LIFE ON. Pomáháme zachraňovat životy v celé České republice.</p>
+                    <a href="#dobrovolnictvi" class="news-link">Více o projektu &raquo;</a>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-img"><img src="https://raw.githubusercontent.com/payntrecords-gif/scjtry/main/Graduation_Photo.jpg" alt="100k promoce"></div>
+                <div class="news-body">
+                    <h4>100 000 promoce se staly tradicí</h4>
+                    <p>Ohlédnutí za fenomenálními promocemi absolventů Misijního centra Sión. Jak se studuje Bible v 21. století?</p>
+                    <a href="#graduation" class="news-link">Číst více &raquo;</a>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-img"><img src="https://raw.githubusercontent.com/payntrecords-gif/scjtry/main/shincheonji-dobrovolnictvi-2025-domov-senioru-1-1024x684.jpg" alt="Svědectví"></div>
+                <div class="news-body">
+                    <h4>Svědectví: Proměna životů</h4>
+                    <p>Inspirativní příběhy lidí, kterým studium Bible a život v komunitě Shincheonji přinesly naději a smysl.</p>
+                    <a href="#studium" class="news-link">Zjistit více &raquo;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+ </section>
+
+ <section class="section" id="graduation">
+ <div class="container">
+ <span class="sec-label">Fenomén víry</span>
+ <h2 class="sec-h2">100 000 Promoce: Světový unikát</h2>
+ <div class="grid-2">
+ <div class="img-card">
+ <div class="img-wrap" style="aspect-ratio: 16/9;">
+ <img src="https://raw.githubusercontent.com/payntrecords-gif/scjtry/main/Graduation_Photo.jpg" alt="100 000 promoce">
+ </div>
+ <div class="img-content">
+ <h3>Největší teologická promoce</h3>
+ <p>Tisíce studentů z celého světa, včetně České republiky, každoročně úspěšně zakončují studium v Misijním centru Sión.</p>
+ </div>
+ </div>
+ <div class="text-block" style="display: flex; flex-direction: column; justify-content: center;">
+ <p>Promoce 100 000 absolventů v Shincheonji se staly celosvětovou tradicí. Je to bezprecedentní fenomén, který ukazuje na neutuchající hlad po pravdě a hlubokém porozumění Bibli.</p>
+ <p>V roce 2024 odpromovalo rekordních <strong>111 628 studentů</strong> za jediný rok, což potvrzuje výjimečnost našeho poznání.</p>
+ <div style="margin-top: 1rem; padding: 1.5rem; background: var(--cream); border-radius: 8px;">
+ <span style="display: block; font-family: var(--font-serif); font-size: 1.2rem; color: var(--gold-dark); margin-bottom: 0.5rem;">„Učení, které mění životy“</span>
+ <p style="font-size: 0.9rem; margin: 0; font-style: italic;">Studenti si cení především jasného výkladu proroctví a jejich naplnění v dnešní době.</p>
+ </div>
+ </div>
+ </div>
+ </div>
+ </section>
+ <section class="section" id="about">
+ <div class="container">
+ <span class="sec-label">Vedení a podstata</span>
+ <h2 class="sec-h2">Název a poslání církve</h2>
+ <div class="grid-2">
+ <div class="text-block">
+ <p>Celý název církve zní <strong>„Shincheonji, církev Ježíšova, svatyně stánku svědectví“</strong>. Jméno Shincheonji pochází z čínštiny a znamená Nové nebe nová země.</p>
+ <p>Shincheonji navěky zachovává novou smlouvu. Naším cílem je šířit lásku a světlo skrze porozumění Božímu slovu, které je v dnešním světě tolik potřebné.</p>
+ <p>V roce 2026 se zaměřujeme na budování pevných základů víry a podporu komunity skrze bezplatné vzdělávání.</p>
+ </div>
+ <div class="img-card" style="max-width: 400px; margin: 0 auto;">
+ <div class="img-wrap" style="aspect-ratio: 1/1;">
+ <img src="https://raw.githubusercontent.com/payntrecords-gif/scjtry/main/p%C5%99edseda.jpg" alt="Předseda Man Hee Lee">
+ </div>
+ <div class="img-content" style="text-align: center;">
+ <h3 style="margin-bottom: 0.2rem;">Man Hee Lee</h3>
+ <p style="font-weight: 600; color: var(--gold-dark); margin-bottom: 1rem;">Předseda Shincheonji</p>
+ <p style="font-style: italic; color: var(--text-mid);">„Shincheonji se zavazuje stát se vtělesněním lásky, která přichází jako světlo, déšť a vzduch pro celý svět.“</p>
+ </div>
+ </div>
+ </div>
+ </div>
+ </section>
+ <section class="promo-section">
+ <img src="https://avatars.githubusercontent.com/u/259369535?v=4" alt="BG Logo" class="promo-bg-logo">
+ <div class="container">
+ <span class="sec-label" style="color: var(--gold);">Globální dopad</span>
+ <h2 class="sec-h2" style="color: var(--white); margin-bottom: 1rem;">Rosteme společně v pravdě</h2>
+ <p style="max-width: 30rem; margin: 0 auto 3rem; opacity: 0.8;">Statistiky Misijního centra Sión za poslední roky.</p>
+ <div class="promo-stats">
+ <div class="stat-item">
+ <div class="stat-num">110k+</div>
+ <div class="stat-label">Absolventů ročně</div>
+ </div>
+ <div class="stat-item">
+ <div class="stat-num">15 000+</div>
+ <div class="stat-label">MOU s pastory</div>
+ </div>
+ <div class="stat-item">
+ <div class="stat-num">100%</div>
+ <div class="stat-label">Zdarma studium</div>
+ </div>
+ </div>
+ </div>
+ </section>
+ <section class="section" id="studium">
+ <div class="container">
+ <span class="sec-label">Vzdělávání</span>
+ <h2 class="sec-h2">Misijní centrum Sión</h2>
+ <div class="grid-2">
+ <div class="text-block">
+ <p>Křesťanské misijní centrum Sión je biblický vzdělávací institut, který vyučuje o fyzickém naplnění knihy Zjevení. Kurz vede k plnému pochopení Bible.</p>
+ <ul style="color: var(--text-mid); font-size: 1rem; padding-left: 1.5rem; margin-bottom: 2.5rem;">
+ <li style="margin-bottom: 0.5rem;"><strong>Základy víry:</strong> Úvod do křesťanského života.</li>
+ <li style="margin-bottom: 0.5rem;"><strong>Tajemství království nebeského:</strong> Význam podobenství.</li>
+ <li style="margin-bottom: 0.5rem;"><strong>Celá Bible:</strong> Souvislosti od Genesis po Zjevení.</li>
+ <li style="margin-bottom: 0.5rem;"><strong>Zjevení:</strong> Proroctví a jejich dnešní naplnění.</li>
+ </ul>
+ <a href="https://online.shincheonji.cz/" class="btn btn-solid">Zápis do kurzu 2026</a>
+ </div>
+ <div class="info-card" style="display: flex; flex-direction: column; justify-content: center; text-align: center; border: 2px solid var(--gold);">
+ <div style="font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--gold-dark); margin-bottom: 1rem; font-weight: 700;">Hledáte odpovědi?</div>
+ <h3 style="font-family: var(--font-serif); font-size: 1.8rem; margin-bottom: 1.5rem;">„Pravda vás osvobodí“</h3>
+ <p style="color: var(--text-mid); margin-bottom: 2rem;">Včetně tisíců pastorů z celého světa, kteří se k nám připojili pro hlubší studium Božího slova.</p>
+ <p style="font-size: 0.85rem; color: var(--muted);">Připojte se k nám online nebo osobně.</p>
+ </div>
+ </div>
+ </div>
+ </section>
+ <section class="section" id="dobrovolnictvi" style="background: var(--white);">
+ <div class="container">
+ <span class="sec-label">Služba společnosti</span>
+ <h2 class="sec-h2">Život víry v praxi</h2>
+ <div class="grid-2">
+ <div class="img-card">
+ <div class="img-wrap" style="aspect-ratio: 4/3;">
+ <img src="https://raw.githubusercontent.com/payntrecords-gif/scjtry/main/shincheonji-dobrovolnictvi-darovani-krve-1024x768.jpg" alt="Darování krve">
+ </div>
+ <div class="img-content">
+ <h3>Pomoc bližním</h3>
+ <p>Bible učí, že největším přikázáním je láska. Pořádáme pravidelné darování krve (LIFE ON) a pomáháme těm, kteří to nejvíce potřebují.</p>
+ </div>
+ </div>
+ <div class="img-card">
+ <div class="img-wrap" style="aspect-ratio: 4/3;">
+ <img src="https://raw.githubusercontent.com/payntrecords-gif/scjtry/main/shincheonji-dobrovolnictvi-2025-domov-senioru-1-1024x684.jpg" alt="Domov seniorů">
+ </div>
+ <div class="img-content">
+ <h3>Společenská odpovědnost</h3>
+ <p>V roce 2026 pokračujeme v návštěvách domovů seniorů a kulturních akcích, které přinášejí radost a světlo do naší společnosti.</p>
+ </div>
+ </div>
+ </div>
+ </div>
+ </section>
+ <section class="section" id="contact">
+ <div class="container">
+ <span class="sec-label">Kontakt</span>
+ <h2 class="sec-h2">Ozvěte se nám</h2>
+ <div class="grid-2">
+ <div class="text-block">
+ <p>Máte dotazy k biblickému studiu nebo našim aktivitám v roce 2026? Neváhejte nás kontaktovat.</p>
+ <p>Email: <a href="mailto:czech@shincheonji.cz" style="color:var(--gold-dark); font-weight: 600;">czech@shincheonji.cz</a></p>
+ <p>Web: <a href="https://www.shincheonji.cz" target="_blank" style="color:var(--gold-dark); font-weight: 600;">www.shincheonji.cz</a></p>
+ <br><br>
+ <div class="social-bar">
+ <a href="https://www.facebook.com/shincheonjicz/" target="_blank" class="social-icon" title="Facebook">
+ <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="FB">
+ </a>
+ <a href="https://www.instagram.com/scj.cz/" target="_blank" class="social-icon" title="Instagram">
+ <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="IG">
+ </a>
+ <a href="https://www.youtube.com/c/shincheonjicz" target="_blank" class="social-icon" title="YouTube">
+ <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YT">
+ </a>
+ </div>
+ </div>
+ <div class="info-card" style="background: var(--cream); border: none; display: flex; align-items: center; justify-content: center; text-align: center;">
+ <p style="font-family: var(--font-serif); font-size: 1.4rem; font-style: italic; color: var(--text-mid); margin: 0;">„Poznejte tajemství Bible nevídaným způsobem.“</p>
+ </div>
+ </div>
+ </div>
+ </section>
+ </main>
+ <footer>
+ <div class="container">
+ <img src="https://avatars.githubusercontent.com/u/259369535?v=4" alt="Church Logo" class="footer-logo">
+ <p>© 2026 Shincheonji, církev Ježíšova · Česká republika</p>
+ <p style="font-size: 0.7rem; margin-top: 0.5rem; opacity: 0.6;">Všechna práva vyhrazena.</p>
+ </div>
+ </footer>
+</body>
+</html>
  width: 100%;
  max-width: var(--max-w);
  margin: 0 auto;
