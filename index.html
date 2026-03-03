@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Shincheonji – Nové nebe nová země 2026</title>
 
-  <!-- Typography: elegant serif + clean sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -14,14 +13,15 @@
     :root{
       --bg:#FFFFFF;
       --gold:#D4AF37;
-      --gold-2:#B9911C;
-      --text:#303030;
-      --text-2:#4A4A4A;
+      --gold2:#B9911C;
+      --ink:#141414;
+      --text:#333333;
       --muted:#6E6E6E;
-      --border:rgba(17,17,17,.10);
-      --border-2:rgba(17,17,17,.06);
-      --shadow:0 24px 70px rgba(15,15,15,.08);
-      --shadow-soft:0 12px 40px rgba(15,15,15,.06);
+
+      --border:rgba(20,20,20,.10);
+      --border2:rgba(20,20,20,.06);
+      --shadow:0 26px 80px rgba(10,10,10,.10);
+      --shadowSoft:0 14px 44px rgba(10,10,10,.08);
 
       --max:1120px;
       --gutter:22px;
@@ -30,7 +30,6 @@
       --serif:"Fraunces", Georgia, serif;
       --sans:"Manrope", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 
-      /* spacing scale */
       --s1:8px;
       --s2:12px;
       --s3:16px;
@@ -44,6 +43,7 @@
 
     *{box-sizing:border-box}
     html,body{margin:0;padding:0}
+    html{scroll-behavior:smooth; scroll-padding-top:92px;}
     body{
       font-family:var(--sans);
       color:var(--text);
@@ -54,24 +54,37 @@
       overflow-x:hidden;
     }
 
-    /* Subtle texture + warm depth (very light) */
+    /* subtle warm texture (very light) */
     body:before{
       content:"";
       position:fixed;
       inset:0;
       pointer-events:none;
       background:
-        radial-gradient(900px 520px at 12% 10%, rgba(212,175,55,.10), transparent 55%),
-        radial-gradient(740px 420px at 88% 18%, rgba(212,175,55,.07), transparent 58%),
+        radial-gradient(900px 520px at 12% 10%, rgba(212,175,55,.11), transparent 55%),
+        radial-gradient(740px 420px at 88% 18%, rgba(212,175,55,.08), transparent 58%),
         radial-gradient(900px 520px at 50% 115%, rgba(0,0,0,.03), transparent 60%);
       opacity:.9;
       z-index:-1;
     }
 
-    img{max-width:100%;height:auto}
     a{color:inherit}
+    img{max-width:100%;height:auto;display:block}
+    ::selection{background:rgba(212,175,55,.28)}
 
-    .container{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+    .container{max-width:var(--max); margin:0 auto; padding:0 var(--gutter)}
+    .content{
+      max-width:920px;
+      margin:0 auto;
+      text-align:center;
+    }
+
+    /* accessibility */
+    :focus-visible{
+      outline:3px solid rgba(212,175,55,.55);
+      outline-offset:3px;
+      border-radius:10px;
+    }
 
     /* Header */
     header{
@@ -80,8 +93,9 @@
       z-index:100;
       background:rgba(255,255,255,.90);
       backdrop-filter: blur(12px);
-      border-bottom:1px solid var(--border-2);
+      border-bottom:1px solid var(--border2);
     }
+
     .header-inner{
       height:76px;
       display:flex;
@@ -99,8 +113,7 @@
     }
 
     .logo{
-      width:44px;
-      height:44px;
+      width:44px;height:44px;
       border-radius:999px;
       border:1px solid var(--border);
       background:#fff;
@@ -118,37 +131,36 @@
       letter-spacing:.22em;
       text-transform:uppercase;
       color:var(--muted);
-      font-weight:700;
+      font-weight:800;
     }
     .brand-title{
       font-size:13px;
-      color:var(--text-2);
+      color:var(--text);
       font-weight:600;
     }
 
-    nav{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+    nav{display:flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:flex-end}
     nav a{
       text-decoration:none;
       font-size:12px;
       letter-spacing:.12em;
       text-transform:uppercase;
-      font-weight:700;
+      font-weight:800;
       color:var(--muted);
       padding:11px 12px;
       border-radius:999px;
       transition:all .18s ease;
     }
-    nav a:hover{color:var(--gold-2);background:rgba(212,175,55,.10)}
+    nav a:hover{color:var(--gold2); background:rgba(212,175,55,.10)}
 
     .nav-cta{
-      color:#111;
-      border:1px solid rgba(212,175,55,.35);
-      background:linear-gradient(180deg, rgba(212,175,55,.20), rgba(212,175,55,.12));
+      color:#101010;
+      border:1px solid rgba(212,175,55,.38);
+      background:linear-gradient(180deg, rgba(212,175,55,.22), rgba(212,175,55,.12));
       box-shadow:0 14px 32px rgba(212,175,55,.10);
     }
-    .nav-cta:hover{background:linear-gradient(180deg, rgba(212,175,55,.26), rgba(212,175,55,.14))}
+    .nav-cta:hover{background:linear-gradient(180deg, rgba(212,175,55,.28), rgba(212,175,55,.14))}
 
-    /* Mobile menu */
     .menu-btn{
       display:none;
       appearance:none;
@@ -156,228 +168,226 @@
       background:#fff;
       border-radius:999px;
       padding:10px 12px;
-      font-weight:800;
+      font-weight:900;
       letter-spacing:.12em;
       text-transform:uppercase;
       font-size:12px;
-      color:var(--text);
-      box-shadow:var(--shadow-soft);
+      color:var(--ink);
+      box-shadow:var(--shadowSoft);
       cursor:pointer;
     }
+
     .mobile-nav{
       display:none;
-      border-top:1px solid var(--border-2);
+      border-top:1px solid var(--border2);
       padding:12px 0 16px;
     }
+    .mobile-nav.open{display:block}
     .mobile-nav a{
       display:block;
       padding:12px 0;
       text-decoration:none;
-      font-weight:800;
+      font-weight:900;
       letter-spacing:.10em;
       text-transform:uppercase;
       font-size:12px;
       color:var(--muted);
     }
-    .mobile-nav a:hover{color:var(--gold-2)}
+    .mobile-nav a:hover{color:var(--gold2)}
 
     /* Sections */
-    .section{padding:var(--s9) 0}
-    .section.compact{padding:var(--s8) 0}
+    .section{padding:clamp(62px, 6.6vw, 92px) 0}
+    .section.alt{
+      background:rgba(255,255,255,.55);
+      border-top:1px solid rgba(0,0,0,.03);
+      border-bottom:1px solid rgba(0,0,0,.03);
+    }
 
     .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
       font-size:12px;
       letter-spacing:.26em;
       text-transform:uppercase;
+      color:var(--gold2);
+      font-weight:900;
+    }
+    .kicker:before{
+      content:"";
+      width:34px;
+      height:1px;
+      background:linear-gradient(90deg, transparent, rgba(185,145,28,.75), transparent);
+      opacity:.9;
+    }
+
+    h1{
+      font-family:var(--serif);
+      font-weight:700;
       color:var(--gold);
-      font-weight:800;
+      margin:16px 0 10px;
+      line-height:1.02;
+      letter-spacing:.01em;
+      font-size:clamp(42px, 6.2vw, 82px);
     }
 
     .h2{
       margin:14px 0 0;
       font-family:var(--serif);
+      font-weight:700;
       font-size:clamp(28px, 3.4vw, 40px);
       line-height:1.1;
-      letter-spacing:.01em;
-      color:#151515;
+      color:var(--ink);
     }
 
     .lead{
-      margin:12px 0 0;
+      margin:12px auto 0;
       font-size:17px;
-      color:var(--text-2);
-      max-width:72ch;
+      color:rgba(20,20,20,.78);
+      max-width:74ch;
     }
 
-    /* Hero */
-    .hero{
-      padding:clamp(84px, 10vw, 120px) 0 var(--s8);
-      text-align:center;
-    }
-    .hero h1{
-      margin:18px auto 10px;
-      font-family:var(--serif);
-      font-weight:700;
-      font-size:clamp(44px, 6.4vw, 82px);
-      line-height:1.02;
-      color:var(--gold);
-      max-width:20ch;
-    }
-    .hero-sub{
-      margin:0 auto;
-      max-width:78ch;
-      color:var(--text-2);
-      font-size:18px;
-    }
-
-    .actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:22px}
+    .actions{display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:22px}
     .btn{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      gap:10px;
       padding:12px 18px;
       border-radius:999px;
       border:1px solid var(--border);
       text-decoration:none;
-      font-weight:800;
+      font-weight:900;
       letter-spacing:.02em;
       font-size:14px;
       background:#fff;
-      box-shadow:var(--shadow-soft);
+      box-shadow:var(--shadowSoft);
       transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
       will-change:transform;
     }
-    .btn:hover{transform:translateY(-2px);box-shadow:0 18px 54px rgba(15,15,15,.10)}
-
+    .btn:hover{transform:translateY(-2px); box-shadow:0 22px 60px rgba(10,10,10,.12)}
     .btn-primary{
-      border-color:rgba(212,175,55,.45);
+      border-color:rgba(212,175,55,.46);
       background:linear-gradient(180deg, rgba(212,175,55,.22), rgba(212,175,55,.12));
     }
-    .btn-ghost{background:rgba(255,255,255,.60)}
+    .btn-ghost{background:rgba(255,255,255,.70)}
 
-    .hero-line{
+    .rule{
       height:1px;
-      background:linear-gradient(90deg, transparent, rgba(17,17,17,.10), transparent);
+      width:min(880px, 100%);
       margin:34px auto 0;
-      max-width:860px;
+      background:linear-gradient(90deg, transparent, rgba(20,20,20,.12), transparent);
     }
 
-    /* Cards */
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
-    .grid-2{display:grid;grid-template-columns:1.15fr .85fr;gap:20px;margin-top:28px}
+    /* Cards / grids */
+    .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:28px}
+    .grid-2{display:grid; grid-template-columns:1.1fr .9fr; gap:20px; margin-top:28px}
 
     .card{
-      border:1px solid var(--border-2);
-      background:rgba(255,255,255,.86);
+      border:1px solid var(--border2);
+      background:rgba(255,255,255,.88);
       border-radius:var(--radius);
       box-shadow:var(--shadow);
       overflow:hidden;
+      transform:translateZ(0);
+      transition:transform .22s ease, box-shadow .22s ease;
     }
+    .card:hover{transform:translateY(-4px); box-shadow:0 34px 100px rgba(10,10,10,.13)}
 
-    .info-card{padding:22px}
-    .info-title{
-      margin:10px 0 8px;
-      font-family:var(--serif);
-      font-size:22px;
-      line-height:1.2;
-      color:#151515;
-    }
-    .info-text{margin:0;color:var(--muted);font-size:14px}
-
+    .info{padding:22px; text-align:left}
     .pill{
       display:inline-flex;
       align-items:center;
       gap:8px;
       padding:8px 12px;
       border-radius:999px;
-      border:1px solid rgba(212,175,55,.32);
+      border:1px solid rgba(212,175,55,.34);
       background:rgba(212,175,55,.10);
-      color:var(--gold-2);
+      color:var(--gold2);
       font-weight:900;
       letter-spacing:.12em;
       text-transform:uppercase;
       font-size:11px;
     }
+    .info h3{
+      font-family:var(--serif);
+      color:var(--ink);
+      margin:10px 0 8px;
+      font-size:22px;
+      line-height:1.2;
+    }
+    .info p{margin:0; color:var(--muted); font-size:14px}
 
-    /* Photo cards */
-    .photo{aspect-ratio:16/10;background:linear-gradient(180deg, rgba(212,175,55,.08), rgba(0,0,0,.03));overflow:hidden}
-    .photo img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.01);transition:transform .7s ease}
+    /* Media (video + big images) */
+    .media{
+      border:1px solid var(--border2);
+      border-radius:22px;
+      overflow:hidden;
+      background:#fff;
+      box-shadow:0 34px 110px rgba(0,0,0,.12);
+    }
+    .media.ratio-16x9{aspect-ratio:16/9}
+    .media iframe{width:100%; height:100%; border:0; display:block}
+
+    .photo{aspect-ratio:16/10; background:linear-gradient(180deg, rgba(212,175,55,.10), rgba(0,0,0,.03)); overflow:hidden}
+    .photo img{width:100%;height:100%;object-fit:cover; transform:scale(1.01); transition:transform .75s ease}
     .card:hover .photo img{transform:scale(1.06)}
 
-    .caption{padding:16px 18px 18px}
-    .caption h3{margin:0 0 8px;font-family:var(--serif);font-size:20px;color:#151515;line-height:1.2}
-    .caption p{margin:0;color:var(--muted);font-size:14px}
+    .caption{padding:16px 18px 18px; text-align:left}
+    .caption h3{margin:0 0 8px; font-family:var(--serif); font-size:20px; color:var(--ink); line-height:1.2}
+    .caption p{margin:0; color:var(--muted); font-size:14px}
 
-    /* News */
-    .news-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:18px;margin-top:22px}
-    .news-card{display:flex;flex-direction:column}
-    .news-card .photo{aspect-ratio:16/9}
-    .news-card .caption a{
+    .news-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:18px; margin-top:22px}
+    .news a{
       display:inline-block;
       margin-top:12px;
       text-decoration:none;
-      color:var(--gold-2);
+      color:var(--gold2);
       font-weight:900;
       letter-spacing:.12em;
       text-transform:uppercase;
       font-size:12px;
     }
+    .news a:hover{text-decoration:underline}
 
-    /* Big image */
-    .big{
-      border-radius:22px;
-      overflow:hidden;
-      border:1px solid var(--border-2);
-      background:#fff;
-      box-shadow:0 32px 90px rgba(0,0,0,.12);
-    }
-    .big img{display:block;width:100%;height:auto}
-
-    /* Contact */
-    .contact-list{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+    /* Contact list */
+    .contact-list{margin:0; padding:0; list-style:none; display:grid; gap:10px}
     .contact-list li{
-      border:1px solid var(--border-2);
+      border:1px solid var(--border2);
       background:rgba(0,0,0,.01);
       border-radius:14px;
       padding:12px 14px;
-      color:var(--text-2);
+      color:rgba(20,20,20,.82);
       font-size:14px;
     }
 
-    /* Reveal animations */
-    .reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease, transform .7s ease}
-    .reveal.in{opacity:1;transform:none}
+    /* Reveal */
+    .reveal{opacity:0; transform:translateY(14px); transition:opacity .75s ease, transform .75s ease}
+    .reveal.in{opacity:1; transform:none}
     .reveal.d2{transition-delay:.08s}
     .reveal.d3{transition-delay:.16s}
 
     @media (prefers-reduced-motion: reduce){
-      *{scroll-behavior:auto}
+      html{scroll-behavior:auto}
       .reveal{opacity:1;transform:none;transition:none}
-      .btn,.photo img{transition:none}
+      .card,.btn,.photo img{transition:none}
     }
 
-    /* Footer */
     footer{
-      padding:50px 0 60px;
+      padding:52px 0 62px;
       text-align:center;
       color:var(--muted);
-      border-top:1px solid var(--border-2);
+      border-top:1px solid var(--border2);
       background:#fff;
     }
 
-    /* Responsive */
     @media (max-width: 980px){
       nav{display:none}
-      .menu-btn{display:inline-flex;align-items:center;gap:10px}
-      .mobile-nav{display:none}
-      .mobile-nav.open{display:block}
+      .menu-btn{display:inline-flex}
       .grid-2{grid-template-columns:1fr}
     }
     @media (max-width: 860px){
       .grid-3{grid-template-columns:1fr}
-      .section{padding:var(--s8) 0}
-      .section.compact{padding:var(--s7) 0}
+      .info, .caption{padding:18px}
     }
   </style>
 </head>
@@ -395,34 +405,35 @@
 
       <nav aria-label="Navigace">
         <a href="#info">Info</a>
+        <a href="#chvala">Chvála</a>
         <a href="#galerie">Galerie</a>
         <a href="#zpravy">Zprávy</a>
         <a href="#studium">Studium</a>
-        <a href="#dobro">Dobrovolnictví</a>
-        <a href="#svet">Shincheonji ve světě</a>
+        <a href="#svet">Ve světě</a>
         <a href="#kontakt" class="nav-cta">Kontakt</a>
       </nav>
 
       <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileNav">Menu</button>
     </div>
+
     <div class="container mobile-nav" id="mobileNav" aria-label="Mobilní navigace">
       <a href="#info">Info</a>
+      <a href="#chvala">Chvála</a>
       <a href="#galerie">Galerie</a>
       <a href="#zpravy">Zprávy</a>
       <a href="#studium">Studium</a>
-      <a href="#dobro">Dobrovolnictví</a>
-      <a href="#svet">Shincheonji ve světě</a>
+      <a href="#svet">Ve světě</a>
       <a href="#kontakt">Kontakt</a>
     </div>
   </header>
 
   <main id="top">
     <!-- HERO -->
-    <section class="hero">
-      <div class="container">
+    <section class="section">
+      <div class="container content">
         <div class="kicker reveal in">Nové nebe nová země 2026</div>
         <h1 class="reveal in">Jediná pravá církev, kde všichni rozumí Zjevení</h1>
-        <p class="hero-sub reveal in d2">Komunita víry, biblické vzdělávání a dobrovolnické aktivity. Pokračujeme ve sdílení slova, které přináší naději a smysl.</p>
+        <p class="lead reveal in d2">Komunita víry, biblické vzdělávání a dobrovolnické aktivity. Pokračujeme ve sdílení slova, které přináší naději a smysl.</p>
 
         <div class="actions reveal in d3">
           <a class="btn btn-primary" href="https://online.shincheonji.cz/" target="_blank" rel="noopener noreferrer">Začít studovat online</a>
@@ -430,41 +441,71 @@
           <a class="btn" href="#kontakt">Kontakt</a>
         </div>
 
-        <div class="hero-line"></div>
+        <div class="rule"></div>
 
         <!-- INFO BLOCKS -->
-        <div id="info" class="grid-3">
-          <div class="card info-card reveal">
-            <span class="pill">Studium</span>
-            <h2 class="info-title">Misijní centrum Sión</h2>
-            <p class="info-text">Bezplatný kurz, který vede k systematickému pochopení Bible a knihy Zjevení.</p>
+        <div id="info" class="grid-3" style="text-align:left">
+          <div class="card reveal">
+            <div class="info">
+              <span class="pill">Studium</span>
+              <h3>Misijní centrum Sión</h3>
+              <p>Bezplatný kurz, který vede k systematickému pochopení Bible a knihy Zjevení.</p>
+            </div>
           </div>
 
-          <div class="card info-card reveal d2">
-            <span class="pill">Komunita</span>
-            <h2 class="info-title">Život víry v praxi</h2>
-            <p class="info-text">Setkávání, podpora a vzdělávání s důrazem na lásku, službu a odpovědnost.</p>
+          <div class="card reveal d2">
+            <div class="info">
+              <span class="pill">Komunita</span>
+              <h3>Život víry v praxi</h3>
+              <p>Setkávání, podpora a vzdělávání s důrazem na lásku, službu a odpovědnost.</p>
+            </div>
           </div>
 
-          <div class="card info-card reveal d3">
-            <span class="pill">Události</span>
-            <h2 class="info-title">Zprávy z ČR i ze světa</h2>
-            <p class="info-text">Promoce, mezinárodní setkání, sportovní úspěchy i dobrovolnictví – přehledně na jednom místě.</p>
+          <div class="card reveal d3">
+            <div class="info">
+              <span class="pill">Události</span>
+              <h3>Zprávy z ČR i ze světa</h3>
+              <p>Promoce, mezinárodní setkání, sportovní úspěchy i dobrovolnictví – přehledně na jednom místě.</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- PRAISE (YouTube embed) -->
+    <section class="section alt" id="chvala">
+      <div class="container content">
+        <div class="kicker reveal">Nejnovější chvála</div>
+        <h2 class="h2 reveal">Oficiální YouTube video</h2>
+        <p class="lead reveal d2">Vloženo přímo z YouTube (můžeš kdykoli vyměnit jen ID videa v URL).</p>
+
+        <div class="media ratio-16x9 reveal d3" style="margin-top:22px;">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/ADi1E2QFBHE"
+            title="Chvála – YouTube"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+
+        <div class="actions reveal" style="margin-top:18px;">
+          <a class="btn btn-primary" href="https://www.youtube.com/watch?v=ADi1E2QFBHE" target="_blank" rel="noopener noreferrer">Otevřít na YouTube</a>
+          <a class="btn" href="#galerie">Pokračovat dolů</a>
+        </div>
+      </div>
+    </section>
+
     <!-- GALLERY -->
-    <section class="section compact" id="galerie">
-      <div class="container">
+    <section class="section" id="galerie">
+      <div class="container content">
         <div class="kicker reveal">Galerie</div>
         <h2 class="h2 reveal">Tři momenty komunity</h2>
-        <p class="lead reveal d2">Karty mají stejnou velikost, konzistentní typografii a jemné hover efekty.</p>
+        <p class="lead reveal d2">Konzistentní rozměry karet, jemné animace a jednotná typografie.</p>
 
-        <div class="grid-3">
+        <div class="grid-3" style="margin-top:28px;">
           <article class="card reveal">
-            <div class="photo"><img src="verup-camp-2-1024x683.jpg" alt="VerUP kemp" /></div>
+            <div class="photo"><img src="verup-camp-2-1024x683.jpg" alt="VerUP kemp" loading="lazy" /></div>
             <div class="caption">
               <h3>VerUP kemp</h3>
               <p>Společné chvíle, sdílení víry a budování vztahů napříč zeměmi.</p>
@@ -472,7 +513,7 @@
           </article>
 
           <article class="card reveal d2">
-            <div class="photo"><img src="takewondo.jpg" alt="Taekwondo tým" /></div>
+            <div class="photo"><img src="takewondo.jpg" alt="Taekwondo tým" loading="lazy" /></div>
             <div class="caption">
               <h3>Taekwondo tým</h3>
               <p>Disciplína, podpora a radost z výsledků – i to je součást komunity.</p>
@@ -480,7 +521,7 @@
           </article>
 
           <article class="card reveal d3">
-            <div class="photo"><img src="shincheonji-dobrovolnictvi-2025-domov-senioru-1-1024x684.jpg" alt="Dobrovolnictví v domově seniorů" /></div>
+            <div class="photo"><img src="shincheonji-dobrovolnictvi-2025-domov-senioru-1-1024x684.jpg" alt="Dobrovolnictví v domově seniorů" loading="lazy" /></div>
             <div class="caption">
               <h3>Dobrovolnictví</h3>
               <p>Praktická pomoc a lidská blízkost – pro seniory, rodiny i potřebné.</p>
@@ -491,137 +532,136 @@
     </section>
 
     <!-- NEWS -->
-    <section class="section" id="zpravy">
-      <div class="container">
+    <section class="section alt" id="zpravy">
+      <div class="container content">
         <div class="kicker reveal">Aktuality</div>
         <h2 class="h2 reveal">Zprávy a prohlášení</h2>
-        <p class="lead reveal d2">Vybrané články s jednotným vzhledem, bez rušivých prvků a s jasným CTA.</p>
+        <p class="lead reveal d2">Vybrané články – čistě, bez vizuálního chaosu a s jasným CTA.</p>
 
-        <div class="news-grid">
-          <article class="card news-card reveal">
-            <div class="photo"><img src="Tiskov%C3%A1%20zpr%C3%A1va%20K-Pop%20a%20n%C3%A1bo%C5%BEensk%C3%A1%20svoboda.png" alt="Tisková zpráva" /></div>
-            <div class="caption">
+        <div class="news-grid" style="text-align:left">
+          <article class="card reveal">
+            <div class="photo" style="aspect-ratio:16/9">
+              <img src="Tiskov%C3%A1%20zpr%C3%A1va%20K-Pop%20a%20n%C3%A1bo%C5%BEensk%C3%A1%20svoboda.png" alt="Tisková zpráva" loading="lazy" />
+            </div>
+            <div class="caption news">
               <h3>Tisková zpráva</h3>
               <p>K-Pop a náboženská svoboda.</p>
               <a href="https://www.shincheonji.cz/tiskova-zprava/" target="_blank" rel="noopener noreferrer">Číst více</a>
             </div>
           </article>
 
-          <article class="card news-card reveal d2">
-            <div class="photo"><img src="jakpochopitzjeveni.jpg" alt="Jak pochopit Zjevení" /></div>
-            <div class="caption">
+          <article class="card reveal d2">
+            <div class="photo" style="aspect-ratio:16/9">
+              <img src="jakpochopitzjeveni.jpg" alt="Jak pochopit Zjevení" loading="lazy" />
+            </div>
+            <div class="caption news">
               <h3>Jak pochopit Zjevení</h3>
               <p>Porozumění, které spojuje hosty z mnoha zemí.</p>
               <a href="https://www.shincheonji.cz/jak-spravne-pochopit-knihu-zjeveni/" target="_blank" rel="noopener noreferrer">Číst více</a>
             </div>
           </article>
 
-          <article class="card news-card reveal d3">
-            <div class="photo"><img src="pastori-a-shincheonji-verejny-test-zjeveni-1-1024x608.jpg" alt="Veřejný test Zjevení" /></div>
-            <div class="caption">
+          <article class="card reveal d3">
+            <div class="photo" style="aspect-ratio:16/9">
+              <img src="pastori-a-shincheonji-verejny-test-zjeveni-1-1024x608.jpg" alt="Veřejný test Zjevení" loading="lazy" />
+            </div>
+            <div class="caption news">
               <h3>Veřejný test Zjevení</h3>
               <p>Dialog s pastory a ověřování porozumění.</p>
               <a href="https://www.shincheonji.cz/shincheonji-tanzanie-98-pastoru-zkouska/" target="_blank" rel="noopener noreferrer">Číst více</a>
             </div>
           </article>
         </div>
+
+        <div class="actions reveal" style="margin-top:22px;">
+          <a class="btn" href="https://www.shincheonji.cz/zpravy-z-nnnz/" target="_blank" rel="noopener noreferrer">Všechny zprávy</a>
+        </div>
       </div>
     </section>
 
     <!-- STUDY -->
     <section class="section" id="studium">
-      <div class="container">
+      <div class="container content">
         <div class="kicker reveal">Studium Bible</div>
         <h2 class="h2 reveal">Misijní centrum Sión</h2>
         <p class="lead reveal d2">Jasná cesta krok za krokem – od základů víry až po knihu Zjevení.</p>
 
-        <div class="grid-2">
-          <div class="card info-card reveal">
-            <span class="pill">Kurz</span>
-            <h3 class="info-title">Strukturovaný obsah</h3>
-            <p class="info-text">Základy víry, podobenství, souvislosti celé Bible a detailní studium Zjevení.</p>
-          </div>
-
-          <div class="card info-card reveal d2">
-            <span class="pill">Zdarma</span>
-            <h3 class="info-title">Online i osobně</h3>
-            <p class="info-text">Začni kdykoli a studuj z pohodlí domova – jednoduché, přehledné a dostupné.</p>
-            <div class="actions" style="justify-content:flex-start;margin-top:16px">
-              <a class="btn btn-primary" href="https://online.shincheonji.cz/" target="_blank" rel="noopener noreferrer">Otevřít e-learning</a>
-              <a class="btn" href="#kontakt">Kontakt</a>
+        <div class="grid-2" style="text-align:left">
+          <div class="card reveal">
+            <div class="info">
+              <span class="pill">Kurz</span>
+              <h3>Strukturovaný obsah</h3>
+              <p>Základy víry, podobenství, souvislosti celé Bible a detailní studium Zjevení.</p>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- VOLUNTEERING -->
-    <section class="section" id="dobro">
-      <div class="container">
-        <div class="kicker reveal">Dobrovolnictví</div>
-        <h2 class="h2 reveal">Život víry v praxi</h2>
-        <p class="lead reveal d2">Praktická pomoc a společenská odpovědnost – důraz na laskavost a službu.</p>
-
-        <div class="grid-2">
-          <div class="card info-card reveal">
-            <span class="pill">Aktivity</span>
-            <h3 class="info-title">Pomoc bližním</h3>
-            <p class="info-text">Darování krve (LIFE ON), návštěvy domovů seniorů a další komunitní aktivity.</p>
-          </div>
-          <div class="big reveal d2">
-            <img src="shincheonji-dobrovolnictvi-2025-domov-senioru-1-1024x684.jpg" alt="Dobrovolníci v domově seniorů" />
+          <div class="card reveal d2">
+            <div class="info">
+              <span class="pill">Zdarma</span>
+              <h3>Online i osobně</h3>
+              <p>Začni kdykoli a studuj z pohodlí domova – jednoduché, přehledné a dostupné.</p>
+              <div class="actions" style="justify-content:flex-start;margin-top:16px">
+                <a class="btn btn-primary" href="https://online.shincheonji.cz/" target="_blank" rel="noopener noreferrer">Otevřít e-learning</a>
+                <a class="btn" href="#kontakt">Kontakt</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- WORLD -->
-    <section class="section" id="svet">
-      <div class="container">
+    <section class="section alt" id="svet">
+      <div class="container content">
         <div class="kicker reveal">Shincheonji ve světě</div>
         <h2 class="h2 reveal">Globální misie a dialog</h2>
         <p class="lead reveal d2">Mezinárodní setkání, dialog a vzdělávání napříč kulturami.</p>
 
         <div class="grid-2">
-          <div class="card info-card reveal">
-            <span class="pill">Zprávy</span>
-            <h3 class="info-title">Události ze světa</h3>
-            <p class="info-text">Promoce, programy porozumění a události, které propojují věřící z mnoha zemí.</p>
-            <div class="actions" style="justify-content:flex-start;margin-top:16px">
-              <a class="btn" href="https://www.shincheonji.cz/zpravy-z-nnnz/" target="_blank" rel="noopener noreferrer">Všechny zprávy</a>
+          <div class="card reveal" style="text-align:left">
+            <div class="info">
+              <span class="pill">Zprávy</span>
+              <h3>Události ze světa</h3>
+              <p>Promoce, programy porozumění a události, které propojují věřící z mnoha zemí.</p>
+              <div class="actions" style="justify-content:flex-start;margin-top:16px">
+                <a class="btn" href="https://www.shincheonji.cz/zpravy-z-nnnz/" target="_blank" rel="noopener noreferrer">Všechny zprávy</a>
+              </div>
             </div>
           </div>
-          <div class="big reveal d2">
-            <img src="shincheonji-promoce-2025-cheongju-barevne-rady-ze-shora.jpg" alt="Promoce Shincheonji 2025" />
+
+          <div class="media reveal d2">
+            <img src="shincheonji-promoce-2025-cheongju-barevne-rady-ze-shora.jpg" alt="Promoce Shincheonji 2025" loading="lazy" />
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CONTACT + BIG BOTTOM IMAGE -->
+    <!-- CONTACT + BIG IMAGE -->
     <section class="section" id="kontakt">
-      <div class="container">
+      <div class="container content">
         <div class="kicker reveal">Kontakt</div>
         <h2 class="h2 reveal">Ozvěte se nám</h2>
         <p class="lead reveal d2">Máš dotazy ke studiu nebo aktivitám? Napiš nám a rádi odpovíme.</p>
 
         <div class="grid-2">
-          <div class="card info-card reveal">
-            <span class="pill">Kontakt</span>
-            <h3 class="info-title">Rychlé spojení</h3>
-            <ul class="contact-list">
-              <li><strong>Email:</strong> <a href="mailto:czech@shincheonji.cz">czech@shincheonji.cz</a></li>
-              <li><strong>Web:</strong> <a href="https://www.shincheonji.cz" target="_blank" rel="noopener noreferrer">www.shincheonji.cz</a></li>
-              <li><strong>Online studium:</strong> <a href="https://online.shincheonji.cz/" target="_blank" rel="noopener noreferrer">online.shincheonji.cz</a></li>
-            </ul>
-            <div class="actions" style="justify-content:flex-start;margin-top:16px">
-              <a class="btn btn-primary" href="mailto:czech@shincheonji.cz">Napsat email</a>
-              <a class="btn" href="https://online.shincheonji.cz/" target="_blank" rel="noopener noreferrer">Začít studovat</a>
+          <div class="card reveal" style="text-align:left">
+            <div class="info">
+              <span class="pill">Kontakt</span>
+              <h3>Rychlé spojení</h3>
+              <ul class="contact-list">
+                <li><strong>Email:</strong> <a href="mailto:czech@shincheonji.cz">czech@shincheonji.cz</a></li>
+                <li><strong>Web:</strong> <a href="https://www.shincheonji.cz" target="_blank" rel="noopener noreferrer">www.shincheonji.cz</a></li>
+                <li><strong>Online studium:</strong> <a href="https://online.shincheonji.cz/" target="_blank" rel="noopener noreferrer">online.shincheonji.cz</a></li>
+              </ul>
+              <div class="actions" style="justify-content:flex-start;margin-top:16px">
+                <a class="btn btn-primary" href="mailto:czech@shincheonji.cz">Napsat email</a>
+                <a class="btn" href="https://online.shincheonji.cz/" target="_blank" rel="noopener noreferrer">Začít studovat</a>
+              </div>
             </div>
           </div>
 
-          <div class="big reveal d2">
-            <img src="Graduation_Photo.jpg" alt="Fotografie z promoce" />
+          <div class="media reveal d2">
+            <img src="Graduation_Photo.jpg" alt="Fotografie z promoce" loading="lazy" />
           </div>
         </div>
       </div>
@@ -660,6 +700,7 @@
     (function(){
       const els = Array.from(document.querySelectorAll('.reveal'));
       const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
       if(reduce){
         els.forEach(el => el.classList.add('in'));
         return;
