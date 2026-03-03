@@ -29,16 +29,6 @@
 
       --serif:"Fraunces", Georgia, serif;
       --sans:"Manrope", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-
-      --s1:8px;
-      --s2:12px;
-      --s3:16px;
-      --s4:22px;
-      --s5:30px;
-      --s6:40px;
-      --s7:56px;
-      --s8:74px;
-      --s9:96px;
     }
 
     *{box-sizing:border-box}
@@ -54,7 +44,6 @@
       overflow-x:hidden;
     }
 
-    /* subtle warm texture (very light) */
     body:before{
       content:"";
       position:fixed;
@@ -73,20 +62,14 @@
     ::selection{background:rgba(212,175,55,.28)}
 
     .container{max-width:var(--max); margin:0 auto; padding:0 var(--gutter)}
-    .content{
-      max-width:920px;
-      margin:0 auto;
-      text-align:center;
-    }
+    .content{max-width:920px; margin:0 auto; text-align:center;}
 
-    /* accessibility */
     :focus-visible{
       outline:3px solid rgba(212,175,55,.55);
       outline-offset:3px;
       border-radius:10px;
     }
 
-    /* Header */
     header{
       position:sticky;
       top:0;
@@ -101,7 +84,7 @@
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:var(--s3);
+      gap:16px;
     }
 
     .brand{
@@ -195,7 +178,6 @@
     }
     .mobile-nav a:hover{color:var(--gold2)}
 
-    /* Sections */
     .section{padding:clamp(62px, 6.6vw, 92px) 0}
     .section.alt{
       background:rgba(255,255,255,.55);
@@ -263,6 +245,7 @@
       box-shadow:var(--shadowSoft);
       transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
       will-change:transform;
+      cursor:pointer;
     }
     .btn:hover{transform:translateY(-2px); box-shadow:0 22px 60px rgba(10,10,10,.12)}
     .btn-primary{
@@ -278,7 +261,6 @@
       background:linear-gradient(90deg, transparent, rgba(20,20,20,.12), transparent);
     }
 
-    /* Cards / grids */
     .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:28px}
     .grid-2{display:grid; grid-template-columns:1.1fr .9fr; gap:20px; margin-top:28px}
 
@@ -317,7 +299,6 @@
     }
     .info p{margin:0; color:var(--muted); font-size:14px}
 
-    /* Media (video + big images) */
     .media{
       border:1px solid var(--border2);
       border-radius:22px;
@@ -337,7 +318,7 @@
     .caption p{margin:0; color:var(--muted); font-size:14px}
 
     .news-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:18px; margin-top:22px}
-    .news a{
+    .news-link{
       display:inline-block;
       margin-top:12px;
       text-decoration:none;
@@ -347,9 +328,8 @@
       text-transform:uppercase;
       font-size:12px;
     }
-    .news a:hover{text-decoration:underline}
+    .news-link:hover{text-decoration:underline}
 
-    /* Contact list */
     .contact-list{margin:0; padding:0; list-style:none; display:grid; gap:10px}
     .contact-list li{
       border:1px solid var(--border2);
@@ -359,6 +339,90 @@
       color:rgba(20,20,20,.82);
       font-size:14px;
     }
+
+    /* Modal (article detail) */
+    .modal{ position:fixed; inset:0; display:none; z-index:200; }
+    .modal.open{ display:block; }
+    .modal__backdrop{ position:absolute; inset:0; background:rgba(10,10,10,.55); }
+
+    .modal__panel{
+      position:relative;
+      width:min(980px, calc(100% - 32px));
+      max-height:calc(100vh - 32px);
+      margin:16px auto;
+      border-radius:22px;
+      background:rgba(255,255,255,.96);
+      border:1px solid rgba(20,20,20,.10);
+      box-shadow:0 40px 140px rgba(0,0,0,.25);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      animation: modalIn .18s ease-out;
+    }
+    @keyframes modalIn{
+      from{ transform:translateY(10px); opacity:0; }
+      to{ transform:none; opacity:1; }
+    }
+
+    .modal__close{
+      position:absolute;
+      top:14px; right:14px;
+      width:42px; height:42px;
+      border-radius:999px;
+      border:1px solid rgba(20,20,20,.12);
+      background:#fff;
+      cursor:pointer;
+      font-weight:900;
+    }
+
+    .modal__header{
+      padding:22px 22px 12px;
+      border-bottom:1px solid rgba(20,20,20,.06);
+    }
+    .modal__title{
+      margin:12px 0 8px;
+      font-family: var(--serif);
+      color: var(--ink);
+      font-size: clamp(22px, 2.4vw, 30px);
+      line-height:1.15;
+    }
+    .modal__meta{
+      color:rgba(20,20,20,.62);
+      font-size:13px;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      font-weight:900;
+    }
+
+    .modal__body{
+      padding:18px 22px 22px;
+      overflow:auto;
+      -webkit-overflow-scrolling:touch;
+      text-align:left;
+    }
+    .modal__body p{ margin:0 0 14px; color:rgba(20,20,20,.80); }
+    .modal__body h4{ margin:18px 0 10px; font-family:var(--serif); color:var(--ink); }
+    .modal__body ul{ margin:0 0 14px; padding-left:18px; color:rgba(20,20,20,.80); }
+    .modal__body blockquote{
+      margin:16px 0;
+      padding:14px 16px;
+      border-left:3px solid rgba(212,175,55,.55);
+      background:rgba(212,175,55,.08);
+      border-radius:14px;
+      color:rgba(20,20,20,.78);
+    }
+
+    .modal__footer{
+      padding:14px 22px 18px;
+      border-top:1px solid rgba(20,20,20,.06);
+      display:flex;
+      gap:12px;
+      justify-content:flex-end;
+      flex-wrap:wrap;
+      background:rgba(255,255,255,.85);
+    }
+
+    body.modal-lock{ overflow:hidden; }
 
     /* Reveal */
     .reveal{opacity:0; transform:translateY(14px); transition:opacity .75s ease, transform .75s ease}
@@ -477,7 +541,7 @@
       <div class="container content">
         <div class="kicker reveal">Nejnovější chvála</div>
         <h2 class="h2 reveal">Oficiální YouTube video</h2>
-        <p class="lead reveal d2">Vloženo přímo z YouTube (můžeš kdykoli vyměnit jen ID videa v URL).</p>
+        <p class="lead reveal d2">Video je vložené tak, aby zůstalo čisté a rychlé (nocookie embed).</p>
 
         <div class="media ratio-16x9 reveal d3" style="margin-top:22px;">
           <iframe
@@ -491,7 +555,7 @@
 
         <div class="actions reveal" style="margin-top:18px;">
           <a class="btn btn-primary" href="https://www.youtube.com/watch?v=ADi1E2QFBHE" target="_blank" rel="noopener noreferrer">Otevřít na YouTube</a>
-          <a class="btn" href="#galerie">Pokračovat dolů</a>
+          <a class="btn" href="#zpravy">Přejít na články</a>
         </div>
       </div>
     </section>
@@ -501,7 +565,7 @@
       <div class="container content">
         <div class="kicker reveal">Galerie</div>
         <h2 class="h2 reveal">Tři momenty komunity</h2>
-        <p class="lead reveal d2">Konzistentní rozměry karet, jemné animace a jednotná typografie.</p>
+        <p class="lead reveal d2">Obrázky si můžeš kdykoli vyměnit, karty zůstanou stejně velké.</p>
 
         <div class="grid-3" style="margin-top:28px;">
           <article class="card reveal">
@@ -531,44 +595,68 @@
       </div>
     </section>
 
-    <!-- NEWS -->
+    <!-- NEWS (cards open modal, stay on page) -->
     <section class="section alt" id="zpravy">
       <div class="container content">
         <div class="kicker reveal">Aktuality</div>
         <h2 class="h2 reveal">Zprávy a prohlášení</h2>
-        <p class="lead reveal d2">Vybrané články – čistě, bez vizuálního chaosu a s jasným CTA.</p>
+        <p class="lead reveal d2">Klikni na článek – otevře se detail na této stránce (modal), bez odchodu pryč.</p>
 
         <div class="news-grid" style="text-align:left">
+          <!-- ARTICLE CARD 1 -->
           <article class="card reveal">
             <div class="photo" style="aspect-ratio:16/9">
               <img src="Tiskov%C3%A1%20zpr%C3%A1va%20K-Pop%20a%20n%C3%A1bo%C5%BEensk%C3%A1%20svoboda.png" alt="Tisková zpráva" loading="lazy" />
             </div>
-            <div class="caption news">
-              <h3>Tisková zpráva</h3>
-              <p>K-Pop a náboženská svoboda.</p>
-              <a href="https://www.shincheonji.cz/tiskova-zprava/" target="_blank" rel="noopener noreferrer">Číst více</a>
+            <div class="caption">
+              <h3>Tisková zpráva: K-Pop a náboženská svoboda</h3>
+              <p>(Perex) Sem si dej 1–2 věty, aby karta nevypadala prázdně.</p>
+              <a class="news-link"
+                 href="#tiskova-zprava"
+                 data-article="tiskova-zprava"
+                 data-tag="Tisková zpráva"
+                 data-date="2026"
+                 data-url="https://www.shincheonji.cz/tiskova-zprava/">
+                Rozkliknout
+              </a>
             </div>
           </article>
 
+          <!-- ARTICLE CARD 2 -->
           <article class="card reveal d2">
             <div class="photo" style="aspect-ratio:16/9">
-              <img src="jakpochopitzjeveni.jpg" alt="Jak pochopit Zjevení" loading="lazy" />
+              <img src="pastori-a-shincheonji-verejny-test-zjeveni-1-1024x608.jpg" alt="Prohlášení" loading="lazy" />
             </div>
-            <div class="caption news">
-              <h3>Jak pochopit Zjevení</h3>
-              <p>Porozumění, které spojuje hosty z mnoha zemí.</p>
-              <a href="https://www.shincheonji.cz/jak-spravne-pochopit-knihu-zjeveni/" target="_blank" rel="noopener noreferrer">Číst více</a>
+            <div class="caption">
+              <h3>Prohlášení</h3>
+              <p>(Perex) Krátké 1–2 věty.</p>
+              <a class="news-link"
+                 href="#prohlaseni"
+                 data-article="prohlaseni"
+                 data-tag="Prohlášení"
+                 data-date="2026"
+                 data-url="https://www.shincheonji.cz/prohlaseni/">
+                Rozkliknout
+              </a>
             </div>
           </article>
 
+          <!-- ARTICLE CARD 3 -->
           <article class="card reveal d3">
             <div class="photo" style="aspect-ratio:16/9">
-              <img src="pastori-a-shincheonji-verejny-test-zjeveni-1-1024x608.jpg" alt="Veřejný test Zjevení" loading="lazy" />
+              <img src="shincheonji-dobrovolnictvi-2025-domov-senioru-1-1024x684.jpg" alt="Koledy rozsvítily oči seniorů" loading="lazy" />
             </div>
-            <div class="caption news">
-              <h3>Veřejný test Zjevení</h3>
-              <p>Dialog s pastory a ověřování porozumění.</p>
-              <a href="https://www.shincheonji.cz/shincheonji-tanzanie-98-pastoru-zkouska/" target="_blank" rel="noopener noreferrer">Číst více</a>
+            <div class="caption">
+              <h3>Koledy rozsvítily oči seniorů</h3>
+              <p>(Perex) Krátké 1–2 věty.</p>
+              <a class="news-link"
+                 href="#koledy-seniori"
+                 data-article="koledy-seniori"
+                 data-tag="Dobrovolnictví"
+                 data-date="2025"
+                 data-url="https://www.shincheonji.cz/kdyz-koledy-rozsviti-oci-dobrovolnici-prinesli-svetlo-do-domovu-senioru/">
+                Rozkliknout
+              </a>
             </div>
           </article>
         </div>
@@ -615,7 +703,7 @@
       <div class="container content">
         <div class="kicker reveal">Shincheonji ve světě</div>
         <h2 class="h2 reveal">Globální misie a dialog</h2>
-        <p class="lead reveal d2">Mezinárodní setkání, dialog a vzdělávání napříč kulturami.</p>
+        <p class="lead reveal d2">Sem můžeš přidat další karty „svět“ stejným způsobem (taky do modalu).</p>
 
         <div class="grid-2">
           <div class="card reveal" style="text-align:left">
@@ -624,7 +712,7 @@
               <h3>Události ze světa</h3>
               <p>Promoce, programy porozumění a události, které propojují věřící z mnoha zemí.</p>
               <div class="actions" style="justify-content:flex-start;margin-top:16px">
-                <a class="btn" href="https://www.shincheonji.cz/zpravy-z-nnnz/" target="_blank" rel="noopener noreferrer">Všechny zprávy</a>
+                <a class="btn" href="https://www.shincheonji.cz/kategorie/zpravy-ze-sveta/" target="_blank" rel="noopener noreferrer">Kategorie: Zprávy ze světa</a>
               </div>
             </div>
           </div>
@@ -636,7 +724,7 @@
       </div>
     </section>
 
-    <!-- CONTACT + BIG IMAGE -->
+    <!-- CONTACT -->
     <section class="section" id="kontakt">
       <div class="container content">
         <div class="kicker reveal">Kontakt</div>
@@ -679,6 +767,42 @@
     </div>
   </footer>
 
+  <!-- ARTICLE CONTENT TEMPLATES (sem vložíš plné texty) -->
+  <template id="article-tiskova-zprava">
+    <p><strong>Sem vlož celý obsah článku</strong> (copy/paste).</p>
+    <p>Doporučení: každý odstavec obal do &lt;p&gt;…&lt;/p&gt;.</p>
+  </template>
+
+  <template id="article-prohlaseni">
+    <p><strong>Sem vlož celý obsah prohlášení</strong>.</p>
+  </template>
+
+  <template id="article-koledy-seniori">
+    <p><strong>Sem vlož celý obsah článku o koledách</strong>.</p>
+  </template>
+
+  <!-- Modal -->
+  <div class="modal" id="articleModal" aria-hidden="true">
+    <div class="modal__backdrop" data-close></div>
+
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal__close" type="button" aria-label="Zavřít" data-close>✕</button>
+
+      <div class="modal__header">
+        <div class="pill" id="modalTag">Článek</div>
+        <div class="modal__meta" id="modalMeta"></div>
+        <h3 class="modal__title" id="modalTitle"></h3>
+      </div>
+
+      <div class="modal__body" id="modalBody"></div>
+
+      <div class="modal__footer">
+        <a class="btn btn-primary" id="modalCta" href="#" target="_blank" rel="noopener noreferrer">Otevřít originál</a>
+        <button class="btn" type="button" data-close>Zavřít</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     // Mobile menu toggle
     (function(){
@@ -716,6 +840,109 @@
       },{threshold:0.14, rootMargin:'0px 0px -10% 0px'});
 
       els.forEach(el => io.observe(el));
+    })();
+
+    // Article modal (stay on page)
+    (function(){
+      const modal = document.getElementById('articleModal');
+      const modalBody = document.getElementById('modalBody');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalMeta = document.getElementById('modalMeta');
+      const modalTag = document.getElementById('modalTag');
+      const modalCta = document.getElementById('modalCta');
+
+      let lastFocus = null;
+
+      function openModal({id, title, tag, date, url}){
+        const tpl = document.getElementById('article-' + id);
+        if(!tpl){
+          modalBody.innerHTML = '<p>Chybí template pro článek: <strong>' + escapeHtml(id) + '</strong>.</p>';
+        }else{
+          modalBody.innerHTML = '';
+          modalBody.appendChild(tpl.content.cloneNode(true));
+        }
+
+        modalTitle.textContent = title || '';
+        modalTag.textContent = tag || 'Článek';
+        modalMeta.textContent = [date, 'shincheonji.cz'].filter(Boolean).join(' · ');
+        modalCta.href = url || '#';
+
+        lastFocus = document.activeElement;
+
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden','false');
+        document.body.classList.add('modal-lock');
+
+        // deep link (ke sdílení)
+        history.pushState({article:id}, '', '#' + id);
+
+        // focus
+        const closeBtn = modal.querySelector('.modal__close');
+        if(closeBtn) closeBtn.focus();
+      }
+
+      function closeModal({restoreHash=true}={}){
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden','true');
+        document.body.classList.remove('modal-lock');
+
+        if(restoreHash){
+          history.pushState({}, '', '#zpravy');
+        }
+
+        if(lastFocus && lastFocus.focus) lastFocus.focus();
+      }
+
+      function escapeHtml(str){
+        return String(str).replace(/[&<>"']/g, m => ({
+          "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"
+        }[m]));
+      }
+
+      // open by click on link
+      document.addEventListener('click', (e) => {
+        const a = e.target.closest('a[data-article]');
+        if(a){
+          e.preventDefault();
+          openModal({
+            id: a.getAttribute('data-article'),
+            title: a.closest('.caption')?.querySelector('h3')?.textContent || '',
+            tag: a.getAttribute('data-tag') || '',
+            date: a.getAttribute('data-date') || '',
+            url: a.getAttribute('data-url') || ''
+          });
+          return;
+        }
+
+        if(e.target.matches('[data-close]')) closeModal({restoreHash:false});
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if(e.key === 'Escape' && modal.classList.contains('open')) closeModal({restoreHash:false});
+      });
+
+      // open if user comes with #articleId
+      window.addEventListener('load', () => {
+        const id = location.hash.replace('#','').trim();
+        if(!id) return;
+        const trigger = document.querySelector('a[data-article="' + CSS.escape(id) + '"]');
+        if(trigger){
+          trigger.click();
+        }
+      });
+
+      // handle back button
+      window.addEventListener('popstate', () => {
+        const id = location.hash.replace('#','').trim();
+        if(!id){
+          if(modal.classList.contains('open')) closeModal({restoreHash:false});
+          return;
+        }
+        const trigger = document.querySelector('a[data-article="' + CSS.escape(id) + '"]');
+        if(trigger){
+          trigger.click();
+        }
+      });
     })();
   </script>
 </body>
